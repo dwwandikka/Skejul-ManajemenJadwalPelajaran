@@ -67,7 +67,7 @@ form{
 }
 
 .form-login{
-  margin-top: 4rem;
+  margin-top: 2rem;
   text-align: start;
 }
 
@@ -129,10 +129,11 @@ input:focus::placeholder{
   font-weight: 500;
   color: #464646;
   font-size: 1rem;
+  cursor: pointer;
 }
 
 input[type="submit"]{
-  margin-top: 2rem;
+  margin-top: 1rem;
   border: none;
   background: linear-gradient(66.214deg, #0959FF 10%, #00A5FF 100%);
   color: #fff;
@@ -141,4 +142,9 @@ input[type="submit"]{
 
 .login-right{
   width: 50%;
+}
+
+.container-right{
+  background: linear-gradient(65.413deg, #0959FF 37%, #00A5FF 92%);
+  color: #fff;;
 }

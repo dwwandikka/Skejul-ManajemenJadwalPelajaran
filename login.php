@@ -41,6 +41,8 @@
       <div class="container-right">
         <h1>Selamat Datang!</h1>
         <h2>Masuk untuk cek jadwalmu dengan mudah</h2>
+        <img src="assets/img/Sidebar-dashboard.png" alt="" width="300">
+        <p>Cara paling mudah buat cek jadwal kamu setiap hari</p>
       </div>
     </div>
   </div>
