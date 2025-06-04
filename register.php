@@ -1,37 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skejul - Manajemen Jadwal Pelajaran</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skejul - Manajemen Jadwal Sekolah</title>
+  <link rel="stylesheet" href="assets/css/regis.css">
 </head>
 <body>
-    <div class="container">
-        <div class="regis-left">
-            <h2>Selamat datang, Admin!</h2>
-            <p>Membuat akun SkeJul untuk pegguna dengan mudah</p>
-            <span class="note">Cara paling mudah buat cek jadwal kamu setiap hari</span>
-        </div>
 
-        <div class="regis-right">
-            <h2>Buat akun</h2>
-            <p class="sub">Selamat datang! Silahkan masukkan detail pengguna</p>
-            <form action="" method="POST">
-                <input type="text" name="Nama lengkap"placehorder="Masukan nama lengkap" required>
-                <input type="text" name="Nama pengguna"placehorder="Masukan nama pengguna" required>
-                <select name="kategori" required>
-                    <option value="">Kategori</option>
+  <div class="container-regis">
+    <div class="regis-left">
+      <div class="regis-container-left">
+        <h1>Selamat Datang, Admin!</h1>
+        <h2>Membuat akun SkeJul untuk <br> pengguna dengan mudah</h2>
+        <img src="assets/img/Sidebar-dashboard.png" alt="" width="400">
+        <p>Cara paling mudah buat cek <br> jadwal kamu setiap hari</p>
+      </div>
+    </div> 
+
+    <div class="regis-right">
+      <div class="logo-skejul">
+        <img src="assets/img/Skejul.png" alt="">
+      </div>
+      <div class="container-regis-right">
+        <h2>Buat Akun</h2>
+        <p class="text-welcome">Selamat datang! Silahkan masukkan detail pengguna.</p>
+        <div class="form-regis">
+          <form action="" method="post">
+            <div class="label-input-regis">
+              <label for="">Nama Lengkap</label>
+              <input type="text" name="" placeholder="Masukkan nama lengkap">
+            </div>
+            <div class="label-input-kategori-regis">
+              <label for="" >Nama Pengguna</label>
+              <div class="input-kategori-regis">
+                <input type="text" name="" placeholder="Masukkan nama pengguna">
+                  <select id="kategori" class="dropdown" required>
+                    <option value="" disabled selected>Kategori</option>
+                    <option value="murid">Murid</option>
                     <option value="guru">Guru</option>
-                    <option value="siswa">Siswa</option>
                     <option value="admin">Admin</option>
-                </select>
-                <input type="password" name="Kata sandi" placehorder="Masukkan kata sandi" required>
-                <input type="password" name="Konfirmasi sandi" placehorder="Konfirmasi sandi" required>
-                <button type="submit" name="submit">Buat Akun</button>
-            </form>
-
-            
+                  </select>
+              </div>
+            </div>
+            <div class="label-input-regis">
+              <label for="">Kata Sandi</label>
+              <input type="password" name="" placeholder="Masukkan kata sandi">
+            </div>
+            <div class="label-input-regis">
+              <label for="">Konfirm Sandi</label>
+              <input type="password" name="" placeholder="Konfirm sandi">
+            </div>
+            <input type="submit" value="Buat Akun">
+          </form>
         </div>
+      </div>
     </div>
+  </div>  
 </body>
 </html>
