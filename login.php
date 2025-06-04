@@ -16,13 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
     $type_acc = $_POST['type_acc'] ?? '';
-    $type_acc = strtolower($type_acc);
-
-    $valid_roles = ['siswa', 'guru', 'admin'];
-    if (!in_array($type_acc, $valid_roles)) {
-        echo "<script>alert('Role tidak valid!'); window.location.href='login.php';</script>";
-        exit();
-    }
 
     // Ambil data user
     $stmt = $conn->prepare("SELECT * FROM users WHERE username = ? AND peran = ? LIMIT 1");
