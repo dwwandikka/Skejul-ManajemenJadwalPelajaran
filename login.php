@@ -33,7 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $db_password = $user['password'];
 
         if (strpos($db_password, '$2y$') === 0) {
-            // Password sudah hash
             if (password_verify($password, $db_password)) {
                 loginUser($user);
             } else {
@@ -41,9 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit();
             }
         } else {
-            // Password masih plaintext
             if ($password === $db_password) {
-                // Hash sekarang
                 $new_hash = password_hash($password, PASSWORD_DEFAULT);
                 $update = $conn->prepare("UPDATE users SET password = ? WHERE user_id = ?");
                 $update->bind_param("si", $new_hash, $user['user_id']);
@@ -61,7 +58,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// fungsi bantu buat set session dan redirect
 function loginUser($user) {
     $_SESSION['user_id'] = $user['user_id'];
     $_SESSION['username'] = $user['username'];
@@ -93,7 +89,7 @@ function loginUser($user) {
   <div class="container-login">
     <div class="login-left">
       <div class="logo-skejul">
-        <img src="assets/img/Skejul.png" alt="">
+        <img src="assets/img/Skejul-color.png" alt="">
       </div>
       <div class="container-login-left">
         <h2>Masuk</h2>
@@ -106,8 +102,10 @@ function loginUser($user) {
             </div>
             <div class="label-input-login">
               <label for="">Kata Sandi</label>
-              <input type="password" name="password" placeholder="Masukkan kata sandi" required>
-
+              <div class="password-input">
+                <input type="password" name="password" placeholder="Masukkan kata sandi" required>
+                <span class="password-check"><img src="assets/img/Eye-close.svg" alt=""></span>
+              </div>
             </div>
             <div class="label-input-login">
               <label for="">Pilih tipe akun</label>
@@ -127,7 +125,7 @@ function loginUser($user) {
       <div class="login-container-right">
         <h1>Selamat Datang!</h1>
         <h2>Masuk untuk cek jadwalmu <br> dengan mudah</h2>
-        <img src="assets/img/SidebarDashboard.png" alt="" width="400">
+        <img src="assets/img/Sidebar-dashboard1.png" alt="" width="400">
         <p>Cara paling mudah buat cek <br> jadwal kamu setiap hari</p>
       </div>
     </div>
