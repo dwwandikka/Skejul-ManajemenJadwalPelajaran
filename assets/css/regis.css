@@ -107,6 +107,7 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  position: relative; /* Tambahan untuk positioning password-check */
 }
 
 .label-input-kategori-regis {
@@ -194,6 +195,11 @@ input:focus {
   padding-left: 1rem;
 }
 
+/* Khusus untuk password focus - tetap pertahankan padding kanan */
+input[type="password"]:focus {
+  padding-right: 3rem;
+}
+
 input:focus::placeholder {
   color: transparent;
 }
@@ -202,12 +208,35 @@ select:focus {
   outline: 1.5px solid #d4d4d4;
 }
 
-.password-regis svg {
+/* Styling baru untuk password-check icon */
+.password-check {
   position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
+  top: 52%;
+  right: 1rem;
   cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.password-check img {
+  width: 1.25rem;
+  height: 1.25rem;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.password-check:hover img {
+  opacity: 1;
+}
+
+/* Untuk memastikan label tetap di atas */
+.label-input-regis label {
+  position: relative;
+  z-index: 1;
 }
 
 input[type="submit"] {
@@ -310,5 +339,10 @@ input[type="submit"]:hover {
 
   h2 {
     text-align: start;
+  }
+
+  /* Responsive untuk password-check */
+  .password-check {
+    right: 2rem; /* Sesuaikan dengan lebar input mobile */
   }
 }

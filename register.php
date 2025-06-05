@@ -113,26 +113,6 @@ if ($result) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Skejul - Manajemen Jadwal Sekolah</title>
   <link rel="stylesheet" href="assets/css/regis.css">
-  <script>
-    function toggleKelasDropdown() {
-      const peran = document.getElementById('kategori').value;
-      const kelasDropdown = document.getElementById('kelas-dropdown');
-      
-      if (peran === 'murid') {
-        kelasDropdown.style.display = 'block';
-        document.getElementById('kelas_id').required = true;
-      } else {
-        kelasDropdown.style.display = 'none';
-        document.getElementById('kelas_id').required = false;
-        document.getElementById('kelas_id').value = '';
-      }
-    }
-
-    // Show kelas dropdown on page load if murid is selected
-    window.onload = function() {
-      toggleKelasDropdown();
-    }
-  </script>
 </head>
 <body>
 
@@ -168,23 +148,13 @@ if ($result) {
           <form action="" method="post">
             <div class="label-input-regis">
               <label for="nama_lengkap">Nama Lengkap</label>
-              <input type="text" 
-                     name="nama_lengkap" 
-                     id="nama_lengkap"
-                     placeholder="Masukkan nama lengkap"
-                     value="<?php echo isset($nama_lengkap) ? htmlspecialchars($nama_lengkap) : ''; ?>"
-                     required>
+              <input type="text" name="nama_lengkap" id="nama_lengkap" placeholder="Masukkan nama lengkap" value="<?php echo isset($nama_lengkap) ? htmlspecialchars($nama_lengkap) : ''; ?>" required>
             </div>
             
             <div class="label-input-kategori-regis">
               <label for="username">Nama Pengguna</label>
               <div class="input-kategori-regis">
-                <input type="text" 
-                       name="username" 
-                       id="username"
-                       placeholder="Masukkan nama pengguna"
-                       value="<?php echo isset($username) ? htmlspecialchars($username) : ''; ?>"
-                       required>
+                <input type="text" name="username" id="username" placeholder="Masukkan nama pengguna" value="<?php echo isset($username) ? htmlspecialchars($username) : ''; ?>" required>
                 <select name="kategori" id="kategori" class="dropdown" onchange="toggleKelasDropdown()" required>
                   <option value="" disabled <?php echo (empty($peran)) ? 'selected' : ''; ?>>Kategori</option>
                   <option value="murid" <?php echo (isset($peran) && $peran == 'murid') ? 'selected' : ''; ?>>Murid</option>
@@ -208,22 +178,21 @@ if ($result) {
               </select>
             </div>
             
+            <!-- Ganti bagian password dan konfirm password di form Anda dengan struktur ini -->
             <div class="label-input-regis">
               <label for="password">Kata Sandi</label>
-              <input type="password" 
-                     name="password" 
-                     id="password"
-                     placeholder="Masukkan kata sandi"
-                     required>
+              <input type="password" name="password" id="password" placeholder="Masukkan kata sandi"required>
+              <span class="password-check">
+                <img src="assets/img/Eye-close.svg" alt="Show password">
+              </span>
             </div>
-            
+
             <div class="label-input-regis">
               <label for="konfirm_password">Konfirm Sandi</label>
-              <input type="password" 
-                     name="konfirm_password" 
-                     id="konfirm_password"
-                     placeholder="Konfirm sandi"
-                     required>
+              <input type="password" name="konfirm_password" id="konfirm_password" placeholder="Konfirm sandi" required>
+              <span class="password-check">
+                <img src="assets/img/Eye-close.svg" alt="Show password">
+              </span>
             </div>
             
             <input type="submit" value="Buat Akun">
@@ -231,6 +200,7 @@ if ($result) {
         </div>
       </div>
     </div>
-  </div>  
+  </div>
+  <script src="assets/js/regis.js"></script>
 </body>
 </html>
