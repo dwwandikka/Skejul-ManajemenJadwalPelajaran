@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0 3.125rem 0 3.125rem;
+  padding: 0;
+  background-color: #f5f8ff;
+  font-family: "poppins", sans-serif;
+}
+
+/* Header */
+.topbar {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 10px 15px 10px 15px;
+  border-radius: 15px;
+  justify-content: space-between;
+  box-shadow: 0 0 4px #aaaaaa;
+  margin-top: 10px;
+}
+.logo-kanan {
+  display: block;
+  width: 50px;
+  height: 50px;
+}
+.school-name {
+  font-weight: bold;
+  padding-left: 15px;
+  font-size: 14px;
+}
+
+.logo-smk {
+  width: 45px;
+  height: 45px;
+}
+.topbar-left {
+  align-items: center;
+  display: flex;
+  padding-left: 10px;
+}
+
+/* Sitebar */
+aside {
+  background: linear-gradient(
+    9.242deg,
+    #0959ff 0%,
+    #0674ff 38%,
+    #00b1ff 70%,
+    #8bdbff 100%
+  );
+  width: 300px;
+  height: 943px;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+.beranda {
+  background-color: white;
+  border-radius: 10px;
+  padding: 8px 120px 8px 20px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  width: fit-content; /* Biar ukurannya menyesuaikan isi */
+  gap: 15px; /* Jarak antara ikon dan teks */
+}
+
+.text-beranda {
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+}
+
+nav ul {
+  list-style-type: none;
+  padding-left: 30px;
+  margin-top: 85px;
+}
+
+nav ul li a {
+  text-decoration: none;
+}
+
+.logo {
+  margin-left: 40px;
+}
+.logo-skejul {
+  align-items: center;
+  margin-top: 40px;
+  margin-left: 30px;
+}
+.jadwal {
+  padding: 8px 150px 8px 20px;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  align-items: center;
+  display: flex;
+}
+.text-jadwal {
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  padding-left: 15px;
+}
+
+.ilustrasi-sitebar {
+  width: 130px;
+  height: 121px;
+}
+
+.info-box {
+  text-align: center;
+  margin-top: 250px;
+}
+
+.info-box p {
+  color: white;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.logout {
+  text-decoration: none;
+  padding: 8px 150px 8px 40px;
+  font-weight: bold;
+  display: inline-block;
+  align-items: center;
+  display: flex;
+  margin-top: 150px;
+}
+.text-keluar {
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  padding-left: 15px;
+}
