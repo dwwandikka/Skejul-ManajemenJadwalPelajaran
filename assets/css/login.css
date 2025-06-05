@@ -49,6 +49,10 @@ body {
   margin-top: 0;
 }
 
+.logo-skejul img{
+  margin-top: .5rem;
+}
+
 .text-welcome {
   color: #7e7e7e;
   margin-top: 0;
@@ -172,6 +176,28 @@ input[type="submit"]:hover{
   opacity: .8;
 }
 
+input[type="password"]{
+  padding-right: 8.2rem;
+}
+
+.password-input{
+  display: flex;
+  position: relative;
+}
+
+.password-check{
+  position: absolute;
+  right: 1.25rem;
+  cursor: pointer;
+  top: 55%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.password-input input {
+  width: 100%;
+}
+
 .login-right {
   width: 50%;
   display: flex;
@@ -201,7 +227,8 @@ input[type="submit"]:hover{
 }
 
 .login-container-right h2{
-  font-size: 1.875rem;
+  font-size: 1.8rem;
+  margin-top: .3rem;
 }
 
 .login-container-right img{
@@ -265,6 +292,8 @@ input[type="submit"]:hover{
   .label-input-login a{
     width: 93%;
   }
+
+  pa
 
   .type-btn {
     flex: 1;
