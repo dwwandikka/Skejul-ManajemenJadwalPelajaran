@@ -7,9 +7,9 @@ $error = ''; //Variabel untuk pesan error
 
 // Proses form jika ada data yang dikirim
 if ($_SERVER['REQUEST_METHOD'] == 'POST') { 
-  // Mengecek apakah user sudah submit form (klik tombol "Buat Akun")
-  // Jika belum submit, PHP akan langsung ke bagian HTML
-  // Jika sudah submit, akan jalankan kode di dalam if ini
+  /* Mengecek apakah user sudah submit form (klik tombol "Buat Akun")
+     Jika belum submit, PHP akan langsung ke bagian HTML
+     Jika sudah submit, akan jalankan kode di dalam if ini */
     
     // Ambil data dari form
     $nama_lengkap = trim($_POST['nama_lengkap'] ?? ''); //$_POST['nama_field'] Mengambil data dari input form
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     if (empty($username)) {
         $errors[] = "Username harus diisi";
-    } elseif (strlen($username) < 3) {
+    } elseif (strlen($username) < 3) { // strlen() → Menghitung panjang karakter
         $errors[] = "Username minimal 3 karakter";
     }
     
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     if (empty($konfirm_password)) {
         $errors[] = "Konfirmasi password harus diisi";
-    } elseif ($password !== $konfirm_password) {
+    } elseif ($password !== $konfirm_password) { //!== embandingkan apakah password dan konfirm password sama
         $errors[] = "Password dan konfirmasi password tidak sama";
     }
     
@@ -49,14 +49,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     
     // Validasi kelas_id jika peran adalah murid
-    if ($peran == 'murid' && empty($kelas_id)) {
+    if ($peran == 'murid' && empty($kelas_id)) { //$peran == 'murid' Mengecek apakah variabel $peran bernilai 'murid'
+            //&& (AND) Kedua kondisi harus TRUE agar blok kode dijalankan, Jika salah satu FALSE, maka blok diabaikan
         $errors[] = "Kelas harus dipilih untuk murid";
     }
     
     // Cek apakah username sudah ada
     if (empty($errors)) {
-        $stmt = $conn->prepare("SELECT COUNT(*) FROM users WHERE username = ?");
-        $stmt->bind_param("s", $username);
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM users WHERE username = ?"); 
+        /* prepare() → Prepared statement untuk keamanan (mencegah SQL injection / Serangan dimana hacker memasukkan kode SQL berbahaya) 
+        COUNT(*) → Menghitung berapa banyak user yang punya username yang sama*/
+        $stmt->bind_param("s", $username); //masukkan variabel $username sebagai string ke posisi ? pertama
         $stmt->execute();
         $result = $stmt->get_result();
         $count = $result->fetch_row()[0];
@@ -64,6 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($count > 0) {
             $errors[] = "Username sudah digunakan, pilih username lain";
         }
+        /*Jika COUNT(*) = 0 → Username belum ada (boleh dipakai)
+          Jika COUNT(*) > 0 → Username sudah ada (tidak boleh dipakai) */
         
         $stmt->close();
     }
@@ -71,24 +76,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Jika tidak ada error, simpan data
     if (empty($errors)) {
         // Hash password untuk keamanan
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT); //password_hash() → Mengenkripsi password agar aman
         
         // Set kelas_id null jika bukan murid
         if ($peran != 'murid') {
             $kelas_id = null;
-        }
+        } // Jika bukan murid, kelas_id dibuat null
         
         // Insert data ke database dengan kelas_id
         $stmt = $conn->prepare("INSERT INTO users (username, nama_lengkap, password, konfirm_password, peran, kelas_id) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("sssssi", $username, $nama_lengkap, $hashed_password, $hashed_password, $peran, $kelas_id);
+        //bind_param("sssssi") → s=string, i=integer
         
         if ($stmt->execute()) {
             $message = "Registrasi berhasil! Akun telah dibuat.";
-            // Reset form
-            $nama_lengkap = $username = $password = $konfirm_password = $peran = $kelas_id = '';
+            $nama_lengkap = $username = $password = $konfirm_password = $peran = $kelas_id = ''; //Jika berhasil → Set pesan sukses & reset form
         } else {
             $errors[] = "Error saat menyimpan data: " . $conn->error;
-        }
+        } //Jika gagal → Tambah pesan error
         
         $stmt->close();
     }
