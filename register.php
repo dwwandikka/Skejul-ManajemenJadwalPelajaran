@@ -1,26 +1,29 @@
 <?php
 // Include file database connection
-include 'db.php';
+include 'db.php'; //Mengambil file koneksi database
 
-$message = '';
-$error = '';
+$message = ''; //Variabel untuk pesan sukses
+$error = ''; //Variabel untuk pesan error
 
 // Proses form jika ada data yang dikirim
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') { 
+  // Mengecek apakah user sudah submit form (klik tombol "Buat Akun")
+  // Jika belum submit, PHP akan langsung ke bagian HTML
+  // Jika sudah submit, akan jalankan kode di dalam if ini
     
     // Ambil data dari form
-    $nama_lengkap = trim($_POST['nama_lengkap'] ?? '');
-    $username = trim($_POST['username'] ?? '');
-    $password = $_POST['password'] ?? '';
-    $konfirm_password = $_POST['konfirm_password'] ?? '';
+    $nama_lengkap = trim($_POST['nama_lengkap'] ?? ''); //$_POST['nama_field'] Mengambil data dari input form
+    $username = trim($_POST['username'] ?? ''); //trim() Menghilangkan spasi di awal dan akhir text
+    $password = $_POST['password'] ?? ''; // ?? '' → Jika data kosong, beri nilai default string kosong
+    $konfirm_password = $_POST['konfirm_password'] ?? ''; 
     $peran = $_POST['kategori'] ?? '';
-    $kelas_id = $_POST['kelas_id'] ?? null; // Tambahan untuk kelas
+    $kelas_id = $_POST['kelas_id'] ?? null; // ?? null → Jika data kosong, beri nilai null
     
     // Validasi input
-    $errors = [];
+    $errors = []; // Array kosong untuk menampung pesan error
     
-    if (empty($nama_lengkap)) {
-        $errors[] = "Nama lengkap harus diisi";
+    if (empty($nama_lengkap)) { //empty() → Mengecek apakah variabel kosong
+        $errors[] = "Nama lengkap harus diisi"; //$errors[] → Menambah pesan error ke array
     }
     
     if (empty($username)) {
