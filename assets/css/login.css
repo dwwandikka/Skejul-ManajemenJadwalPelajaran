@@ -248,17 +248,17 @@ input[type="password"]{
     width: 100%;
   }
 
-  .login-left{
+  .login-left {
     width: 100vw;
-    padding: 0 0 0 1.25rem;
-    margin-top: 3rem;
+    padding: 0 0 0 1.875rem;
+    margin-top: 5rem;
   }
 
   .login-right {
-    display: none; /* kalau mau disembunyiin di mobile */
+    display: none; /* Menyembunyikan bagian ini di mobile */
   }
 
-  .logo-skejul{
+  .logo-skejul {
     width: 105%;
   }
 
@@ -274,26 +274,33 @@ input[type="password"]{
     gap: 0;
   }
 
+  .password-check img{
+    padding-right: 1.25rem;
+  }
+
   .form-login {
     width: 100%;
   }
 
-  form{
+  form {
     margin-top: 0;
+    width: 100%;
   }
 
+  /* Penyesuaian untuk input fields */
   input[type="text"],
   input[type="password"],
   input[type="submit"] {
-    width: 84%;
+    width: 94%; /* Menyesuaikan lebar agar lebih proporsional */
     font-size: 16px;
+    padding: 10px; /* Menambah padding agar tampilan lebih nyaman */
+    margin: 10px 0; /* Menambah jarak antar input */
+    box-sizing: border-box; /* Memastikan padding tidak mempengaruhi lebar */
   }
 
-  .label-input-login a{
+  .label-input-login a {
     width: 93%;
   }
-
-  pa
 
   .type-btn {
     flex: 1;
@@ -307,7 +314,7 @@ input[type="password"]{
     width: 94%;
   }
 
-  input[type="submit"]{
+  input[type="submit"] {
     width: 94%;
   }
 

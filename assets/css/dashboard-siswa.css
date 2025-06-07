@@ -83,6 +83,8 @@ aside {
   width: fit-content;
   gap: 15px;
 }
+
+
 .text-beranda {
   color: rgb(0, 0, 0);
   font-weight: 600;
@@ -164,6 +166,68 @@ nav ul li a {
   display: flex;
   flex-direction: column;
 }
+
+/* Dropdown List */
+.dropdown-list {
+      display: none;
+      position: absolute;
+      top: 55%;
+      left: 5rem;
+      background-color: white;
+      min-width: 15rem;
+      border-radius: .625rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      margin-top: 5px;
+    }
+
+    .jadwal.active{
+      background-color: white;
+      width: 70px;
+      border-radius: .625rem;
+    }
+
+    .arrow-icon{
+      margin-left: 6rem;
+    }
+
+    .jadwal.active .text-jadwal{
+      color: black !important;
+    }
+    
+    .dropdown-list.show {
+      display: block;
+    }
+    
+    .dropdown-list li {
+      margin: 0;
+    }
+    
+    .dropdown-list a {
+      color: #333;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+    }
+    
+    .dropdown-list a:hover {
+      background-color: #0959FF;
+      color: white;
+    }
+    
+    .dropdown-list li:first-child a {
+      border-radius: .625rem .625rem 0 0;
+    }
+    
+    .dropdown-list li:last-child a {
+      border-radius: 0 0 .625rem .625rem;
+    }
+    
 
 /* Header Welcome */
 #welcome-section {
