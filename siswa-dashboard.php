@@ -26,16 +26,23 @@
         <nav>
           <ul>
             <li>
-              <a href="#" class="beranda">
-                <img src="assets/img/home logo.svg" alt="">
+              <a href="siswa-dashboard.php" class="beranda">
+                <img class="home-icon" src="assets/img/home logo.svg" alt="">
                 <span class="text-beranda">Beranda</span>
               </a>
             </li>
-            <li>
+            <li class="dropdown">
               <a href="#" class="jadwal">
-                <img src="assets/img/jadwal icon.svg" alt="">
+                <!-- Icon Jadwal -->
+                <img class="jadwal-icon" src="assets/img/jadwal-icon-white.svg" alt="">
                 <span class="text-jadwal">Jadwal</span>
+                <img class="arrow-icon" src="assets/img/arrow-white.svg" alt="">
               </a>
+              <!-- Dropdown menu -->
+              <ul class="dropdown-list">
+                <li><a href="jadwalhari-siswa.php">Jadwal Hari Ini</a></li>
+                <li><a href="#">Jadwal Lengkap</a></li>
+              </ul>
             </li>
           </ul>
         </nav>
@@ -162,5 +169,7 @@
       </div>
     </div>
   </div>
+
+  <script src="assets/js/siswa-dashboard.js"></script>
 </body>
 </html>

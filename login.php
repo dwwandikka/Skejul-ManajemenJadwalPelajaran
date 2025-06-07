@@ -15,9 +15,8 @@ include 'db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST['username'] ?? '');
     $password = $_POST['password'] ?? '';
-<<<<<<< HEAD
     $type_acc = $_POST['type_acc'] ?? '';
-=======
+
     $type_acc = strtolower($_POST['type_acc'] ?? '');
 
 
@@ -25,7 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<script>alert('Semua field wajib diisi!'); window.location.href='login.php';</script>";
         exit();
     }
->>>>>>> dbd26de7b58afe6925ddebd3912e7cf69e39a97f
 
     $stmt = $conn->prepare("SELECT * FROM users WHERE username = ? AND peran = ? LIMIT 1");
     $stmt->bind_param("ss", $username, $type_acc);
