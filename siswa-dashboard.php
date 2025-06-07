@@ -12,7 +12,7 @@
     <div class="topbar-left">
       <img src="assets/img/logo-smk.png" alt="Logo SMK" class="logo-smk" />
       <span class="school-name">SMK NEGERI 1 DENPASAR</span>
-    </div>
+    </div> 
     <img src="assets/img/logo-smk-hebat.svg" alt="Logo SMK Bisa" class="logo-kanan" />
   </header>
   <div class="container-all">
