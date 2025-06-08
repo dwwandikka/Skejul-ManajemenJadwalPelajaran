@@ -51,7 +51,7 @@ if (!isset($_SESSION['nama'])) {
               <!-- Dropdown menu -->
               <ul class="dropdown-list">
                 <li><a href="jadwalhari-siswa.php">Jadwal Hari Ini</a></li>
-                <li><a href="#">Jadwal Lengkap</a></li>
+                <li><a href="jadwallengkap-siswa.php">Jadwal Lengkap</a></li>
               </ul>
             </li>
           </ul>

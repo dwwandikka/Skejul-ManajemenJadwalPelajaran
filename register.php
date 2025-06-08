@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         
         if ($stmt->execute()) {
-            $message = "Registrasi berhasil! Akun telah dibuat.";
+            $message = "Buat akun berhasil! Akun telah dibuat.";
             $nama_lengkap = $username = $password = $konfirm_password = $peran = $kelas_id = ''; //Jika berhasil → Set pesan sukses & reset form
         } else {
             $errors[] = "Error saat menyimpan data: " . $conn->error;

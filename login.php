@@ -122,7 +122,7 @@ function loginUser($user) {
                   <button type="button" class="type-btn" data-role="Guru">Guru</button>
                   <button type="button" class="type-btn" data-role="Admin">Admin</button>
                 </div>
-                <input type="hidden" name="type_acc" id="typeAcc" value="siswa">
+                <input type="hidden" name="type_acc" id="typeAcc">
                 <input type="submit" value="Masuk">
             </div>
           </form>

@@ -89,8 +89,8 @@ $total_pages = ceil($total_row / $items_per_page);
                 <img class="arrow-icon" src="assets/img/arrow-black.svg" alt="Arrow Icon">
               </a>
               <ul class="dropdown-list">
-                <li><a href="#">Jadwal Hari Ini</a></li>
-                <li><a href="#">Jadwal Lengkap</a></li>
+                <li><a  class="jadwal-hariini" href="#">Jadwal Hari Ini</a></li>
+                <li><a class="jadwal-lengkap" href="jadwallengkap-siswa.php">Jadwal Lengkap</a></li>
               </ul>
             </li>
           </ul>

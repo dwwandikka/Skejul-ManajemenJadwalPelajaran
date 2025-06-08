@@ -2,7 +2,7 @@
 $host = "localhost";
 $user = "root";          
 $pass = "";              
-$db   = "manajemen_jadwal_kelass";        
+$db   = "manajemen_jadwal_kelas";        
 
 $conn = mysqli_connect($host, $user, $pass, $db);
 
