@@ -120,7 +120,7 @@ $total_pages = ceil($total_row / $items_per_page);
           <div class="profile-box">
             <img src="assets/img/profile-avatar.svg" alt="Foto Profil" class="profile-img">
             <div class="profile-text">
-              <h1>Kadek Yudhi Satria</h1>
+              <h1><?php echo $_SESSION['nama']; ?></h1>
               <p>Siswa Aktif</p>
             </div>
           </div>

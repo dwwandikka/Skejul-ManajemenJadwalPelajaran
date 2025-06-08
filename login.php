@@ -15,16 +15,21 @@ include 'db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST['username'] ?? '');
     $password = $_POST['password'] ?? '';
-    $type_acc = $_POST['type_acc'] ?? '';
-
     $type_acc = strtolower($_POST['type_acc'] ?? '');
-
 
     if (empty($username) || empty($password) || empty($type_acc)) {
         echo "<script>alert('Semua field wajib diisi!'); window.location.href='login.php';</script>";
         exit();
     }
 
+    // Memastikan tipe akun valid
+    $valid_roles = ['siswa', 'guru', 'admin'];
+    if (!in_array($type_acc, $valid_roles)) {
+        echo "<script>alert('Tipe akun tidak valid!'); window.location.href='login.php';</script>";
+        exit();
+    }
+
+    // Mencari user berdasarkan username dan tipe akun
     $stmt = $conn->prepare("SELECT * FROM users WHERE username = ? AND peran = ? LIMIT 1");
     $stmt->bind_param("ss", $username, $type_acc);
     $stmt->execute();
@@ -34,40 +39,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($user) {
         $db_password = $user['password'];
 
-        if (strpos($db_password, '$2y$') === 0) {
-            if (password_verify($password, $db_password)) {
-                loginUser($user);
-            } else {
-                echo "<script>alert('Password salah!'); window.location.href='login.php';</script>";
-                exit();
-            }
-        } else {
-            if ($password === $db_password) {
-                $new_hash = password_hash($password, PASSWORD_DEFAULT);
-                $update = $conn->prepare("UPDATE users SET password = ? WHERE user_id = ?");
-                $update->bind_param("si", $new_hash, $user['user_id']);
-                $update->execute();
+        // Pastikan password tidak null
+        if ($db_password === null) {
+            echo "<script>alert('Password tidak tersedia!'); window.location.href='login.php';</script>";
+            exit();
+        }
 
-                loginUser($user);
-            } else {
-                echo "<script>alert('Password salah!'); window.location.href='login.php';</script>";
-                exit();
-            }
+        // Cek apakah password yang dimasukkan cocok dengan password di database
+        if ($db_password === $password) { // Perbandingan langsung plaintext
+            loginUser($user);
+        } else {
+            echo "<script>alert('Password salah!'); window.location.href='login.php';</script>";
+            exit();
         }
     } else {
-        echo "<script>alert('Username atau peran tidak ditemukan!'); window.location.href='login.php';</script>";
+        echo "<script>alert('Akun tidak ditemukan!'); window.location.href='login.php';</script>";
         exit();
     }
 }
 
+// Fungsi loginUser dipindahkan ke luar blok if-else
 function loginUser($user) {
     $_SESSION['user_id'] = $user['user_id'];
     $_SESSION['username'] = $user['username'];
     $_SESSION['nama'] = $user['nama_lengkap'];
     $_SESSION['role'] = $user['peran'];
-    $_SESSION['kelas_id'] = $user['kelas_id'];
-    $_SESSION['guru_id'] = $user['guru_id'];
+    $_SESSION['kelas_id'] = isset($user['kelas_id']) ? $user['kelas_id'] : null;
+    $_SESSION['guru_id'] = isset($user['guru_id']) ? $user['guru_id'] : null;
 
+    // Redirect berdasarkan role
     switch ($user['peran']) {
         case 'siswa':
             header("Location: siswa-dashboard.php");
@@ -85,6 +85,10 @@ function loginUser($user) {
     exit();
 }
 ?>
+
+
+
+
 
 
 
@@ -116,7 +120,7 @@ function loginUser($user) {
                   <button type="button" class="type-btn" data-role="Guru">Guru</button>
                   <button type="button" class="type-btn" data-role="Admin">Admin</button>
                 </div>
-                <input type="hidden" name="type_acc" id="typeAcc" value="Siswa">
+                <input type="hidden" name="type_acc" id="typeAcc" value="siswa">
                 <input type="submit" value="Masuk">
             </div>
           </form>

@@ -7,6 +7,16 @@
   <link rel="stylesheet" href="assets/css/dashboard-siswa.css" />
 </head>
 <body>
+
+<?php 
+session_start();
+if (!isset($_SESSION['nama'])) {
+    // Jika pengguna belum login, redirect ke halaman login
+    header("Location: login.php");
+    exit();
+}
+?>
+
   <!-- Header -->
   <header class="topbar">
     <div class="topbar-left">
@@ -63,7 +73,7 @@
       <div class="welcome-input-emoji">
         <div class="text-welcome">
           <p>Selamat Datang,</p>
-          <h1>Kadek Yudhi Satria</h1>
+          <h1><?php echo $_SESSION['nama']; ?></h1>
         </div>
         <div id="welcome-section" class="card-box">
           <div>
@@ -138,7 +148,7 @@
       <div class="profile-box">
         <img src="assets/img/profile-avatar.svg" alt="Foto Profil" class="profile-img">
         <div class="profile-text">
-          <h1>Kadek Yudhi Satria</h1>
+          <h1><?php echo $_SESSION['nama']; ?></h1>
           <p>Siswa Aktif</p>
         </div>
       </div>
