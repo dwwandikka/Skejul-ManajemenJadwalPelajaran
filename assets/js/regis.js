@@ -1,10 +1,8 @@
-// Tambahkan script ini di dalam tag <script> di file PHP Anda
-
 function toggleKelasDropdown() {
   const peran = document.getElementById("kategori").value;
   const kelasDropdown = document.getElementById("kelas-dropdown");
 
-  if (peran === "murid") {
+  if (peran === "siswa") {  // Ganti dari "murid" ke "siswa" agar sesuai dengan HTML
     kelasDropdown.style.display = "block";
     document.getElementById("kelas_id").required = true;
   } else {
@@ -29,27 +27,17 @@ function togglePassword(inputId, iconElement) {
   }
 }
 
-// Show kelas dropdown on page load if murid is selected
+// Show kelas dropdown on page load if siswa is selected
 window.onload = function () {
   toggleKelasDropdown();
-
-  // Tambahkan event listener untuk password toggle
-  const passwordToggle = document.querySelector(
-    "#password + .password-check img"
-  );
-  const konfirmPasswordToggle = document.querySelector(
-    "#konfirm_password + .password-check img"
-  );
-
-  if (passwordToggle) {
-    passwordToggle.parentElement.addEventListener("click", function () {
-      togglePassword("password", passwordToggle);
+  
+  // Add event listeners untuk password toggle
+  const passwordChecks = document.querySelectorAll('.password-check');
+  passwordChecks.forEach((check, index) => {
+    check.addEventListener('click', function() {
+      const inputId = index === 0 ? 'password' : 'konfirm_password';
+      const iconElement = this.querySelector('img');
+      togglePassword(inputId, iconElement);
     });
-  }
-
-  if (konfirmPasswordToggle) {
-    konfirmPasswordToggle.parentElement.addEventListener("click", function () {
-      togglePassword("konfirm_password", konfirmPasswordToggle);
-    });
-  }
+  });
 };

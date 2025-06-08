@@ -15,6 +15,8 @@ include 'db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST['username'] ?? '');
     $password = $_POST['password'] ?? '';
+    $type_acc = $_POST['type_acc'] ?? '';
+
     $type_acc = strtolower($_POST['type_acc'] ?? '');
 
     if (empty($username) || empty($password) || empty($type_acc)) {
