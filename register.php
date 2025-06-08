@@ -143,7 +143,7 @@ if ($result) {
 
     <div class="regis-right">
       <div class="logo-skejul">
-        <img src="assets/img/Skejul.png" alt="">
+        <img src="assets/img/SkeJul-color.png" alt="">
       </div>
       <div class="container-regis-right">
         <h2>Buat Akun</h2>
