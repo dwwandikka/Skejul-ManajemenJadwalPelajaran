@@ -49,6 +49,28 @@ switch($role) {
     default:
         $status_text = 'User Aktif';
 }
+
+// Set navigation links berdasarkan role
+$dashboard_link = '';
+$jadwal_hari_link = '';
+
+switch($role) {
+    case 'siswa':
+        $dashboard_link = 'siswa-dashboard.php';
+        $jadwal_hari_link = 'jadwalhari-siswa.php';
+        break;
+    case 'guru':
+        $dashboard_link = 'guru-dashboard.php';
+        $jadwal_hari_link = 'guru-jadwalhari.php';
+        break;
+    case 'admin':
+        $dashboard_link = 'admin-dashboard.php';
+        $jadwal_hari_link = 'admin-jadwalhari.php';
+        break;
+    default:
+        $dashboard_link = 'dashboard.php';
+        $jadwal_hari_link = 'jadwalhari.php';
+}
 ?>
 
 <!DOCTYPE html>
@@ -82,7 +104,7 @@ switch($role) {
                 <nav>
                     <ul>
                         <li>
-                        <a href="siswa-dashboard.php" class="beranda">
+                        <a href="<?php echo htmlspecialchars($dashboard_link); ?>" class="beranda">
                             <img class="home-icon" src="assets/img/home-fill.svg" alt="">
                             <span class="text-beranda">Beranda</span>
                         </a>
@@ -96,7 +118,7 @@ switch($role) {
                         </a>
                         <!-- Dropdown menu -->
                         <ul class="dropdown-list">
-                            <li><a href="jadwalhari-siswa.php">Jadwal Hari Ini</a></li>
+                            <li><a href="<?php echo htmlspecialchars($jadwal_hari_link); ?>">Jadwal Hari Ini</a></li>
                             <li><a href="#">Jadwal Lengkap</a></li>
                         </ul>
                         </li>
@@ -158,15 +180,6 @@ switch($role) {
                     </div>
                     <?php endif; ?>
                 </div>
-                
-                <?php if($role === 'guru'): ?>
-                <div class="detail-group">
-                    <div class="detail-item">
-                        <h3>ID Guru</h3>
-                        <p><?php echo htmlspecialchars($_SESSION['guru_id'] ?? 'Tidak tersedia'); ?></p>
-                    </div>
-                </div>
-                <?php endif; ?>
             </div>
         </div>
     </div>
