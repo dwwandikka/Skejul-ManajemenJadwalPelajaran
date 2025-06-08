@@ -178,13 +178,6 @@ switch($role) {
                 </div>
                 <?php endif; ?>
             </div>
-
-            <!-- Tombol Edit Profile (opsional) -->
-            <div class="profile-actions" style="margin-top: 20px; text-align: center;">
-                <button class="btn-edit-profile" onclick="editProfile()" style="background: #0959FF; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
-                    Edit Profile
-                </button>
-            </div>
         </div>
     </div>
 
