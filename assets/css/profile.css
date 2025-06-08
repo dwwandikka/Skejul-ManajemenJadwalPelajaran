@@ -58,33 +58,6 @@ aside {
   border-radius: 20px;
   margin-top: 20px;
 }
-
-.beranda {
-  border-radius: 10px;
-  padding: 8px 120px 8px 20px;
-  text-decoration: none;
-  margin-bottom: 50px;
-  display: flex;
-  align-items: center;
-  width: fit-content; /* Biar ukurannya menyesuaikan isi */
-  gap: 15px; /* Jarak antara ikon dan teks */
-}
-
-.text-beranda {
-  color: white;
-  font-weight: 600;
-}
-
-nav ul {
-  list-style-type: none;
-  padding-left: 30px;
-  margin-top: 85px;
-}
-
-nav ul li a {
-  text-decoration: none;
-}
-
 .logo {
   margin-left: 40px;
 }
@@ -93,6 +66,39 @@ nav ul li a {
   margin-top: 40px;
   margin-left: 30px;
 }
+
+/* Bagian Beranda */
+.beranda {
+  border-radius: 10px;
+  padding: 8px 120px 8px 20px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  gap: 15px;
+}
+
+.home-icon{
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+}
+
+.text-beranda {
+  color: white;
+  font-weight: 600;
+}
+nav ul {
+  list-style-type: none;
+  padding-left: 30px;
+  margin-top: 85px;
+}
+nav ul li a {
+  text-decoration: none;
+}
+
+/* Bagian Jadwal */
 .jadwal {
   padding: 8px 150px 8px 20px;
   font-weight: bold;
@@ -101,28 +107,31 @@ nav ul li a {
   align-items: center;
   display: flex;
 }
+
 .text-jadwal {
   color: rgb(255, 255, 255);
   font-weight: 600;
   padding-left: 15px;
 }
 
+/* Ilustrasi Bawah Sitebar */
 .ilustrasi-sitebar {
   width: 130px;
   height: 121px;
 }
 
+/* Text di Bawah Ilustrasi Sitebar */
 .info-box {
   text-align: center;
   margin-top: 250px;
 }
-
 .info-box p {
   color: white;
   font-weight: 400;
   font-size: 12px;
 }
 
+/* Logout Sitebar */
 .logout {
   text-decoration: none;
   padding: 8px 150px 8px 40px;
@@ -136,6 +145,67 @@ nav ul li a {
   color: rgb(255, 255, 255);
   font-weight: 600;
   padding-left: 15px;
+}
+
+/* Dropdown List */
+.dropdown-list {
+  display: none;
+  position: absolute;
+  top: 55%;
+  left: 5rem;
+  background-color: white;
+  min-width: 15rem;
+  border-radius: 0.625rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 5px;
+}
+
+.jadwal.active {
+  background-color: white;
+  width: 70px;
+  border-radius: 0.625rem;
+}
+
+.arrow-icon {
+  margin-left: 6rem;
+}
+
+.jadwal.active .text-jadwal {
+  color: black !important;
+}
+
+.dropdown-list.show {
+  display: block;
+}
+
+.dropdown-list li {
+  margin: 0;
+}
+
+.dropdown-list a {
+  color: #333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-list a:hover {
+  background-color: #0959ff;
+  color: white;
+}
+
+.dropdown-list li:first-child a {
+  border-radius: 0.625rem 0.625rem 0 0;
+}
+
+.dropdown-list li:last-child a {
+  border-radius: 0 0 0.625rem 0.625rem;
 }
 
 .container-all {
@@ -228,7 +298,7 @@ nav ul li a {
   overflow: hidden;
 }
 
-.profile-avatar img{
+.profile-avatar img {
   width: 70px;
   height: 70px;
 }

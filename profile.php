@@ -74,53 +74,43 @@ switch($role) {
     <div class="container-all">
         <div class="container">
         <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="logo">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="20" viewBox="0 0 22 20" fill="none">
-                <rect width="22" height="3.83555" rx="1.91777" fill="white" />
-                <rect y="7.6711" width="22" height="3.83555" rx="1.91777" fill="white" />
-                <rect y="15.3422" width="10.3529" height="3.83555" rx="1.91777" fill="white" />
-            </svg>
-            <img src="assets/img/SkeJul.png" alt="" class="logo-skejul" />
-            </div>
-
-            <nav>
-            <ul>
-                <li>
-                <a href="<?php echo $role; ?>-dashboard.php" class="beranda">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
-                    <path d="..." fill="#0959FF" />
-                    </svg>
-                    <span class="text-beranda">Beranda</span>
+            <aside class="sidebar">
+                <div class="logo">
+                    <img src="assets/img/List.svg" alt="">
+                    <img src="assets/img/SkeJul-white.svg" alt="" class="logo-skejul" />
+                </div>
+                <nav>
+                    <ul>
+                        <li>
+                        <a href="siswa-dashboard.php" class="beranda">
+                            <img class="home-icon" src="assets/img/home-fill.svg" alt="">
+                            <span class="text-beranda">Beranda</span>
+                        </a>
+                        </li>
+                        <li class="dropdown">
+                        <a href="#" class="jadwal">
+                            <!-- Icon Jadwal -->
+                            <img class="jadwal-icon" src="assets/img/jadwal-icon-white.svg" alt="">
+                            <span class="text-jadwal">Jadwal</span>
+                            <img class="arrow-icon" src="assets/img/arrow-white.svg" alt="">
+                        </a>
+                        <!-- Dropdown menu -->
+                        <ul class="dropdown-list">
+                            <li><a href="jadwalhari-siswa.php">Jadwal Hari Ini</a></li>
+                            <li><a href="#">Jadwal Lengkap</a></li>
+                        </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="info-box">
+                    <img src="assets/img/ilustrasi-sitebar.png" alt="Ilustrasi Jadwal" class="ilustrasi-sitebar" />
+                    <p>Lihat dan kelola jadwal pelajaran <br/> mudah dengan SkeJul</p>
+                </div>
+                <a href="#" class="logout">
+                    <img src="assets/img/icon-logout-white.svg" alt="">
+                    <span class="text-keluar">Keluar</span>
                 </a>
-                </li>
-                <li>
-                <a href="#" class="jadwal">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-                    <path d="..." fill="white" />
-                    </svg>
-                    <span class="text-jadwal">Jadwal</span>
-                </a>
-                </li>
-            </ul>
-            </nav>
-
-            <div class="info-box">
-            <img src="assets/img/ilustrasi-sitebar.png" alt="Ilustrasi Jadwal" class="ilustrasi-sitebar" />
-            <p>
-                Lihat dan kelola jadwal pelajaran <br />
-                mudah dengan SkeJul
-            </p>
-            </div>
-
-            <a href="logout.php" class="logout">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="..." fill="#DBDBDB" />
-                <path d="..." fill="#DBDBDB" />
-            </svg>
-            <span class="text-keluar">Keluar</span>
-            </a>
-        </aside>
+            </aside>
         </div>
         <div class="main-content">
             <div class="mobile-header">
@@ -136,7 +126,7 @@ switch($role) {
             <div class="profile-header">
                 <div class="profile-user">
                     <div class="profile-avatar">
-                        <img src="assets/img/profilee.png" alt="Profile <?php echo htmlspecialchars($display_name); ?>">
+                        <img src="assets/img/profile-avatar.svg" alt="Profile">
                     </div>
                     <div class="profile-info">
                         <h2><?php echo htmlspecialchars($display_username); ?></h2>
@@ -152,7 +142,7 @@ switch($role) {
                         <p><?php echo htmlspecialchars($display_name); ?></p>
                     </div>
                     <div class="detail-item">
-                        <h3>Role/Peran</h3>
+                        <h3>Kategori</h3>
                         <p><?php echo htmlspecialchars($display_role); ?></p>
                     </div>
                 </div>
@@ -181,25 +171,7 @@ switch($role) {
         </div>
     </div>
 
-    <script>
-        function editProfile() {
-            // Redirect ke halaman edit profile atau tampilkan modal edit
-            window.location.href = 'edit-profile.php';
-        }
-
-        // Fungsi untuk logout
-        document.addEventListener('DOMContentLoaded', function() {
-            const logoutBtn = document.querySelector('.logout');
-            if(logoutBtn) {
-                logoutBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    if(confirm('Apakah Anda yakin ingin keluar?')) {
-                        window.location.href = 'logout.php';
-                    }
-                });
-            }
-        });
-    </script>
+    <script src="assets/js/profile.js"></script>
 
 </body>
 
