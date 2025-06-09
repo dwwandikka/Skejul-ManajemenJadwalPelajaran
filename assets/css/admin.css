@@ -1,0 +1,143 @@
+.dropdown {
+  position: relative;
+  width: 270px;
+  font-family: Arial, sans-serif;
+}
+
+.dropdown-toggle {
+  width: 100%;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 8px;
+  padding: 10px 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-label {
+  font-weight: bold;
+  color: #1e1e1e;
+  margin-bottom: 6px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.dropdown-label.hover-only:hover {
+  background-color: #f0f4ff;
+}
+
+.sub-label {
+  font-size: 14px;
+  margin: 6px 0;
+  font-weight: 500;
+  color: #000;
+  cursor: default;
+}
+
+.dropdown-item {
+  display: block;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-top: 4px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #e0e7ff;
+  color: #1d4ed8;
+}
+
+.dropdown-item.main {
+  background-color: #3b82f6;
+  color: white;
+  margin-top: 12px;
+}
+
+.dropdown-item.main:hover {
+  background-color: #2563eb;
+}
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.dropdown-hari {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle-hari {
+  background-color: #2563eb; /* Tailwind blue-600 */
+  color: white;
+  padding: 10px 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 180px;
+  text-align: left;
+}
+
+.arrow {
+  float: right;
+}
+
+.dropdown-menu-hari {
+  display: none;
+  position: absolute;
+  margin-top: 4px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  width: 180px;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.dropdown-menu-hari a.hari-item {
+  display: block;
+  padding: 10px 16px;
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+  transition: background 0.3s;
+}
+
+.dropdown-menu-hari a.hari-item:hover {
+  background-color: #2563eb;
+  color: white;
+}
+
+.dropdown-menu-hari a.hari-item:last-child {
+  border-bottom: none;
+}
+.show-hari {
+    display: block;
+  }
+  

@@ -1,0 +1,603 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0 3.125rem 0 3.125rem;
+  padding: 0;
+  background-color: #f5f8ff;
+  font-family: "poppins", sans-serif;
+}
+
+.container-all {
+  display: flex;
+}
+
+/* Header Logo Skensa - Logo Skensa Hebat*/
+.topbar {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 10px 15px 10px 15px;
+  border-radius: 15px;
+  justify-content: space-between;
+  box-shadow: 0 0 4px #aaaaaa;
+  margin-top: 10px;
+}
+.logo-kanan {
+  display: block;
+  width: 50px;
+  height: 50px;
+}
+.school-name {
+  font-weight: bold;
+  padding-left: 15px;
+  font-size: 14px;
+}
+.logo-smk {
+  width: 45px;
+  height: 45px;
+}
+.topbar-left {
+  align-items: center;
+  display: flex;
+  padding-left: 10px;
+}
+
+/* Sitebar Bagian Left */
+aside {
+  background: linear-gradient(
+    9.242deg,
+    #0959ff 0%,
+    #0674ff 38%,
+    #00b1ff 70%,
+    #8bdbff 100%
+  );
+  width: 300px;
+  height: 943px;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+.logo {
+  margin-left: 40px;
+}
+.logo-skejul {
+  align-items: center;
+  margin-top: 40px;
+  margin-left: 30px;
+}
+
+/* Bagian Beranda */
+.beranda {
+  background-color: white;
+  border-radius: 10px;
+  padding: 8px 120px 8px 20px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  gap: 15px;
+}
+
+
+.text-beranda {
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+}
+nav ul {
+  list-style-type: none;
+  padding-left: 30px;
+  margin-top: 85px;
+}
+nav ul li a {
+  text-decoration: none;
+}
+
+/* Bagian Jadwal */
+.jadwal {
+  padding: 8px 150px 8px 20px;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  align-items: center;
+  display: flex;
+}
+.text-jadwal {
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  padding-left: 15px;
+}
+
+/* Ilustrasi Bawah Sitebar */
+.ilustrasi-sitebar {
+  width: 130px;
+  height: 121px;
+}
+
+/* Text di Bawah Ilustrasi Sitebar */
+.info-box {
+  text-align: center;
+  margin-top: 250px;
+}
+.info-box p {
+  color: white;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+/* Logout Sitebar */
+.logout {
+  text-decoration: none;
+  padding: 8px 150px 8px 40px;
+  font-weight: bold;
+  display: inline-block;
+  align-items: center;
+  display: flex;
+  margin-top: 150px;
+}
+.text-keluar {
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  padding-left: 15px;
+}
+
+/* Display Column Bagian Mid */
+#dashboard-layout {
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  padding: 30px;
+  width: 50%;
+  align-items: center;
+}
+.card-box {
+  background-color: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.left-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Dropdown List */
+.dropdown-list {
+      display: none;
+      position: absolute;
+      top: 55%;
+      left: 5rem;
+      background-color: white;
+      min-width: 15rem;
+      border-radius: .625rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      margin-top: 5px;
+    }
+
+    .jadwal.active{
+      background-color: white;
+      width: 70px;
+      border-radius: .625rem;
+    }
+
+    .arrow-icon{
+      margin-left: 6rem;
+    }
+
+    .jadwal.active .text-jadwal{
+      color: black !important;
+    }
+    
+    .dropdown-list.show {
+      display: block;
+    }
+    
+    .dropdown-list li {
+      margin: 0;
+    }
+    
+    .dropdown-list a {
+      color: #333;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+    }
+    
+    .dropdown-list a:hover {
+      background-color: #0959FF;
+      color: white;
+    }
+    
+    .dropdown-list li:first-child a {
+      border-radius: .625rem .625rem 0 0;
+    }
+    
+    .dropdown-list li:last-child a {
+      border-radius: 0 0 .625rem .625rem;
+    }
+    
+
+/* Header Welcome */
+#welcome-section {
+  grid-column: span 2;
+  display: flex;
+  justify-content: space-between;
+  height: 130px;
+  background: linear-gradient(37.93deg, #0959ff 0%, #00b1ff 55%, #f5f8ff 85%);
+  color: white;
+  border-radius: 15px 200px 15px 15px;
+  margin-top: 5%;
+  width: 95%;
+}
+/* Text Selamat Datang & Nama */
+.text-welcome h1 {
+  margin-top: 0;
+  font-size: 32px;
+}
+.text-welcome p {
+  margin: 0;
+  font-weight: 600;
+}
+ /* Bagian Header  */
+.input-wrapper {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+.input-wrapper p {
+  color: rgb(95, 95, 95);
+  background-color: white;
+  border-radius: 100px;
+  padding: 8px 50px 8px 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.emoji {
+  align-items: center;
+  display: flex;
+  gap: 1.5rem;
+  width: 100%;
+  padding-left: 70px;
+  padding-top: 10px;
+}
+.welcome-input-emoji {
+  align-items: center;
+}
+.ilustrasi-welcomee {
+  position: absolute;
+  width: 230px;
+  margin-left: 52%;
+  margin-top: 7%;
+  z-index: 1;
+}
+.welcome-profilesiswa {
+  display: flex;
+  align-items: center;
+}
+.img-profile-name {
+  display: flex;
+  align-items: center;
+}
+.img-profile-name h1 {
+  font-size: 12px;
+}
+.name-siswa {
+  flex-direction: column;
+}
+
+.profile-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+.profile-box {
+  display: flex;
+  align-items: center;
+}
+.profile-text h1 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}
+.profile-text p {
+  margin: 0;
+  font-size: 14px;
+  color: #b0b0b0;
+  font-weight: 500;
+}
+.welcome-profile-header {
+  display: flex;
+}
+
+/* Bagian Tengah Card Slogan SKENSA */
+.card-row {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+.slogan-skensa {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 0px;
+  margin-top: 30px;
+}
+
+/* Card Slogan Skensa */
+.card {
+  font-size: 15px;
+  font-weight: 500;
+  flex: 1;
+  background-color: #e3ecff;
+  border-radius: 12px;
+  padding: 20px 20px 10px 20px;
+  transition: all 0.4s ease; /* <-- efek smooth semua */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+.card h3,
+.card p {
+  transition: color 0.3s ease; /* warna teks juga smooth */
+}
+.card:hover {
+  background: linear-gradient(74.685deg, #0959ff 0%, #00b1ff 56%, #a5e2ff 100%);
+  transform: translateY(-4px); /* opsional: naik dikit pas hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* bayangan lebih besar */
+}
+.card:hover h3,
+.card:hover p {
+  color: white;
+}
+
+/* Icon di Slogan Skensa */
+.icon-di-slogan-skensa {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  gap: 10px;
+}
+.icon-di-slogan-skensa h3 {
+  margin: 0;
+}
+.icon-di-slogan-skensa .icon-hover {
+  display: none;
+}
+.card:hover .icon-di-slogan-skensa .icon-normal {
+  display: none;
+}
+.card:hover .icon-di-slogan-skensa .icon-hover {
+  display: inline;
+}
+
+/* Deskripsi Skejul Bgian Tengah- Bwah */
+.img-desc-skejul {
+  position: absolute;
+  width: 16%;
+  margin-top: 31%;
+  margin-right: 5%;
+}
+.card-box-desc {
+  background: linear-gradient(-95.051deg, #e3ecff 0%, #f5f8ff 100%);
+  border-radius: 200px 16px 16px 16px;
+  padding: 20px 20px 20px 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  margin-top: 45px;
+}
+.card-box-desc strong {
+  color: #0959ff;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 40%;
+}
+.card-box-desc p {
+  font-weight: 500;
+  font-size: 15px;
+  padding-left: 40%;
+}
+.skejul-blue {
+  padding-left: 40%;
+  padding-top: 20px;
+}
+.card-box {
+  width: 260px;
+}
+
+/* Display Column Bagian Right */
+.right-column {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+  width: 25%;
+  margin-left: 20px;
+}
+
+/* Card Box Tanggal Yang isiinya Hari ini,tanggal, dan filter */
+.card-box-tanggal {
+  background-color: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding: 0%;
+  width: 300px;
+}
+.date-card {
+  width: 224px;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  z-index: 10;
+  margin: 16px;
+  height: 30%;
+
+  /* Efek blur kaca */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  /* Border putih tipis */
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.badge {
+  background-color: #0959ff;
+  color: white;
+  padding: 5px 40px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  display: inline-block;
+  margin-bottom: 10px;
+  margin-top: 15%;
+}
+
+.date-text h1 {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.date-text h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 5px 0 0 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.shapes {
+  position: relative;
+  height: 164px;
+  background: transparent;
+}
+
+/* Shape Right Column */
+.shape {
+  position: absolute;
+}
+
+/* Bentuk setengah lingkaran kiri */
+.shape-1 {
+  background: #0050ff;
+  width: 160px;
+  height: 265px;
+  border-bottom-right-radius: 120px;
+  border-top-left-radius: 16px;
+  top: 0;
+  left: 0;
+  margin: 0;
+}
+
+/* Bulet kanan atas */
+.shape-2 {
+  background: #a0e8ff;
+  width: 130px;
+  height: 115px;
+  border-bottom-left-radius: 100%;
+  border-top-right-radius: 16px;
+  top: 0;
+  right: 0;
+}
+
+/* Bulet kanan bawah */
+.shape-3 {
+  background: #00baff;
+  width: 110px;
+  height: 150px;
+  border-top-left-radius: 100%;
+  border-bottom-left-radius: 120px;
+  top: 122px;
+  right: 0;
+}
+
+/* Bagian Bawah Hari ini */
+.legend-list {
+  padding: 40px;
+  padding-top: 40%;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+  font-weight: 600;
+  color: #111;
+  padding-top: 20px;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.dot-1 {
+  background: #0d47ff;
+}
+.dot-2 {
+  background: #448aff;
+}
+.dot-3 {
+  background: #00bcd4;
+}
+.dot-4 {
+  background: #81d4fa;
+}
+
+/* Bagian Motivasi */
+.gradient-line-bawah {
+  background: linear-gradient(90deg, #0959ff 0%, #00b1ff 56%, #d3f1ff 100%);
+
+  height: 30px;
+  width: 100%;
+  border-radius: 30px;
+}
+.ilustrasi-motivasi {
+  position: absolute;
+  width: 7%;
+  margin-left: 13%;
+  margin-top: 3%;
+}
+.card-box-motivasi p {
+  font-size: 15px;
+  padding: 0;
+  font-weight: 500;
+}
+.card-box-motivasi strong {
+  font-size: 23px;
+  color: #0959ff;
+  font-weight: bold;
+  line-height: 25px;
+}
+
+.card-box-motivasi {
+  height: 180px;
+  background-color: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  margin-top: 20px;
+  width: 260px;
+}
+
+
