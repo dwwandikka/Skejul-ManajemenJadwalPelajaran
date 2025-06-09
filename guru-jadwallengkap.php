@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Skejul - Jadwal Hari Ini</title>
-  <link rel="stylesheet" href="assets/css/guru-jadwallengkap.css">
+  <link rel="stylesheet" href="assets/css/jadwallengkap-siswa.css">
 </head>
 <body>
 

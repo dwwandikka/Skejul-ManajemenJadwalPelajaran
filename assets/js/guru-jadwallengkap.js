@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
       tbody.innerHTML = '<tr><td colspan="4" class="null-table">Loading...</td></tr>';
     }
 
-    fetch('guru-jadwallengkap.php?hari=' + encodeURIComponent(hari))
+    fetch('guru-jadwallengkap.php' + encodeURIComponent(hari))
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
