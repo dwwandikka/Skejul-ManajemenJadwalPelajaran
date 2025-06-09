@@ -87,13 +87,6 @@ function loginUser($user) {
     exit();
 }
 ?>
-
-
-
-
-
-
-
   <div class="container-login">
     <div class="login-left">
       <div class="logo-skejul">

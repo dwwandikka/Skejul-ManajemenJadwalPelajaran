@@ -1,0 +1,457 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0 3.125rem 0 3.125rem;
+  padding: 0;
+  background-color: #f5f8ff;
+  font-family: "poppins", sans-serif;
+}
+
+/* Header */
+.topbar {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 0.625rem 0.9375rem;
+  border-radius: 0.9375rem;
+  justify-content: space-between;
+  box-shadow: 0 0 0.25rem #aaaaaa;
+  margin-top: 0.625rem;
+}
+
+.logo {
+  margin-left: 2.5rem;
+}
+
+.logo-kanan {
+  display: block;
+  width: 3.125rem;
+  height: 3.125rem;
+}
+
+.school-name {
+  font-weight: bold;
+  padding-left: 0.9375rem;
+  font-size: 0.875rem;
+}
+
+.logo-smk {
+  width: 2.8125rem;
+  height: 2.8125rem;
+}
+
+.topbar-left {
+  align-items: center;
+  display: flex;
+  padding-left: 0.625rem;
+}
+
+/* Sidebar */
+.container {
+  display: flex;
+}
+
+aside {
+  background: linear-gradient(
+    9.242deg,
+    #0959ff 0%,
+    #0674ff 38%,
+    #00b1ff 70%,
+    #8bdbff 100%
+  );
+  width: 18.75rem;
+  height: 58.9375rem;
+  border-radius: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.logo-skejul {
+  align-items: center;
+  margin-top: 2.5rem;
+  margin-left: 1.875rem;
+}
+
+nav ul {
+  list-style-type: none;
+  padding-left: 1.875rem;
+  margin-top: 5.3125rem;
+}
+
+nav ul li a {
+  text-decoration: none;
+}
+
+/* Beranda */
+.beranda {
+  border-radius: 0.625rem;
+  padding: 0.5rem 7.5rem 0.5rem 1.25rem;
+  font-weight: bold;
+  text-decoration: none;
+  margin-bottom: 3.125rem;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  gap: 0.9375rem;
+}
+
+.text-beranda {
+  color: white;
+  font-weight: 600;
+}
+
+.text-jadwal {
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+  padding-left: 0.9375rem;
+}
+
+/* Dropdown Jadwal */
+.dropdown {
+  position: relative;
+}
+
+.jadwal {
+  border-radius: 0.625rem;
+  background-color: white;
+  padding: 0.5rem 7.5rem 0.5rem 1.25rem;
+  font-weight: bold;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  width: 6.3rem;
+  cursor: pointer;
+}
+
+/* Dropdown List Styling */
+.dropdown-list {
+  display: block;
+  position: absolute;
+  top: 3.1rem;
+  left: 0;
+  background-color: white;
+  min-width: 15rem;
+  border-radius: 0.625rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 5px;
+}
+
+.jadwal.active {
+  background-color: white;
+  width: 5rem;
+  border-radius: 0.625rem;
+}
+
+.arrow-icon {
+  margin-left: 6rem;
+}
+
+.jadwal.active .text-jadwal {
+  color: black !important;
+}
+
+.dropdown-list.show {
+  display: block;
+}
+
+.dropdown-list li {
+  margin: 0;
+}
+
+.dropdown-list a {
+  color: #333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-list a:hover {
+  background-color: #0959ff;
+  color: white;
+}
+
+.dropdown-list li:first-child a {
+  border-radius: 0.625rem 0.625rem 0 0;
+}
+
+.dropdown-list li:last-child a {
+  border-radius: 0 0 0.625rem 0.625rem;
+  background-color: #0959ff;
+  color: white;
+}
+
+.ilustrasi-sitebar {
+  width: 8.125rem;
+  height: 7.5625rem;
+}
+
+.info-box {
+  text-align: center;
+  margin-top: 15.625rem;
+}
+
+.info-box p {
+  color: white;
+  font-weight: 400;
+  font-size: 0.75rem;
+}
+
+/* Logout */
+.logout {
+  text-decoration: none;
+  padding: 0.5rem 9.375rem 0.5rem 2.5rem;
+  font-weight: bold;
+  display: inline-block;
+  align-items: center;
+  display: flex;
+  margin-top: 9.375rem;
+}
+
+.text-keluar {
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  padding-left: 0.9375rem;
+}
+
+.right-side {
+  width: 76%;
+  margin-left: 2rem;
+}
+
+.container-top {
+  display: flex;
+  align-items: center;
+  margin-top: 3.5rem;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.arrow-top a {
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: #464646;
+}
+
+.arrow-top {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.img-profile-name {
+  display: flex;
+  align-items: center;
+}
+.img-profile-name h1 {
+  font-size: 12px;
+}
+.name-siswa {
+  flex-direction: column;
+}
+
+.profile-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+.profile-box {
+  display: flex;
+  align-items: center;
+}
+.profile-text h1 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}
+.profile-text p {
+  margin: 0;
+  font-size: 14px;
+  color: #b0b0b0;
+  font-weight: 500;
+}
+
+.jadwal-container{
+  margin-top: 4rem;
+}
+
+.jadwal-lengkap-item{
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  margin-bottom: 1.4rem;
+}
+
+.dropdown-hari-wrapper {
+  position: relative;
+  width: 176px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.dropdown-hari-selected {
+  background: #0959FF;
+  color: #fff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  position: relative;
+  height: 2.5rem;
+  width: 11rem;
+}
+
+.dropdown-hari-text{
+  margin-left: 3rem;
+}
+
+.dropdown-hari-selected .icon-hari {
+  position: absolute;
+  left: 16px;
+  width: 20px;
+}
+
+.dropdown-hari-selected .icon-arrow {
+  position: absolute;
+  right: 16px;
+  width: 16px;
+  transition: transform 0.2s;
+  transform: rotate(-90deg);
+}
+
+/* PERBAIKAN: Arrow rotation untuk state open */
+.dropdown-hari-wrapper.open .icon-arrow {
+  transform: rotate(90deg);
+}
+
+.dropdown-hari-wrapper.active {
+  background: #fff;
+  color: #0959FF;
+}
+
+.dropdown-hari-list {
+  display: none;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  z-index: 1000; /* PERBAIKAN: Z-index ditingkatkan */
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dropdown-hari-wrapper.active .dropdown-hari-list,
+.dropdown-hari-wrapper.open .dropdown-hari-list {
+  display: block;
+}
+
+.dropdown-hari-list li {
+  padding: 10px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #222;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  border-bottom: 1px solid #d4d4d4;
+}
+
+.dropdown-hari-list li:hover,
+.dropdown-hari-list li.selected {
+  background: #0959FF;
+  color: #fff;
+}
+
+.dropdown-hari-list li:first-child:hover,
+.dropdown-hari-list li:first-child.selected {
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.dropdown-hari-list li:last-child:hover,
+.dropdown-hari-list li:last-child.selected {
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+/* PERBAIKAN: Table styling yang lebih lengkap */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+#jadwalTabel {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  display: table;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #0959FF;
+  color: white;
+  font-weight: 600;
+  padding-left: 2.5rem;
+  font-size: 0.875rem; /* PERBAIKAN: Ukuran font header */
+}
+
+tr {
+  height: 50px;
+}
+
+td {
+  background-color: #fff;
+  padding-left: 2.5rem;
+  padding-bottom: 1rem;
+  font-weight: 600;
+  border-bottom: 1px solid #d4d4d4;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#jadwalTabel td[colspan] {
+  text-align: center;
+  font-weight: 600;
+}
+
+/* PERBAIKAN: Hide table dengan !important */
+.hide-table {
+  display: none !important;
+}
+
+/* PERBAIKAN: Null table styling yang lebih lengkap */
+.null-table {
+  text-align: center;
+  font-weight: 600;
+  color: #666;
+  font-style: italic;
+  padding: 2rem;
+} 

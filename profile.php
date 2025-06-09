@@ -58,14 +58,12 @@ switch($role) {
     case 'siswa':
         $dashboard_link = 'siswa-dashboard.php';
         $jadwal_hari_link = 'jadwalhari-siswa.php';
+        $jadwal_lengkap_link = 'jadwallengkap-siswa.php';
         break;
     case 'guru':
         $dashboard_link = 'guru-dashboard.php';
         $jadwal_hari_link = 'guru-jadwalhari.php';
-        break;
-    case 'admin':
-        $dashboard_link = 'admin-dashboard.php';
-        $jadwal_hari_link = 'admin-jadwalhari.php';
+        $jadwal_lengkap_link = 'guru-jadwallengkap.php';
         break;
     default:
         $dashboard_link = 'dashboard.php';
@@ -119,7 +117,7 @@ switch($role) {
                         <!-- Dropdown menu -->
                         <ul class="dropdown-list">
                             <li><a href="<?php echo htmlspecialchars($jadwal_hari_link); ?>">Jadwal Hari Ini</a></li>
-                            <li><a href="#">Jadwal Lengkap</a></li>
+                            <li><a href="<?php echo htmlspecialchars($jadwal_lengkap_link); ?>#">Jadwal Lengkap</a></li>
                         </ul>
                         </li>
                     </ul>

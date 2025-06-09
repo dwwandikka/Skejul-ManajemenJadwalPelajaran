@@ -86,7 +86,7 @@ $result = $conn->query($sql);
                 <img class="arrow-icon" src="assets/img/arrow-black.svg" alt="Arrow Icon">
               </a>
               <ul class="dropdown-list">
-                <li><a  class="jadwal-hariini" href="#">Jadwal Hari Ini</a></li>
+                <li><a  class="jadwal-hariini" href="#jadwalhari-siswa">Jadwal Hari Ini</a></li>
                 <li><a class="jadwal-lengkap" href="jadwallengkap-siswa.php">Jadwal Lengkap</a></li>
               </ul>
             </li>
