@@ -7,25 +7,24 @@ let editMode = false;
 let currentEditRow = null;
 
 function openForm(mode, row = null) {
+  console.log('Open form mode:', mode); // Debug untuk memastikan mode diterima
   document.getElementById("formTitle").innerText = mode === 'edit' ? "Edit Jadwal" : "Tambah Jadwal";
   document.getElementById("submitBtn").innerText = mode === 'edit' ? "Simpan" : "Tambah";
   editMode = mode === 'edit';
 
   if (editMode && row) {
-    currentEditRow = row.closest("tr");
-    const cells = currentEditRow.querySelectorAll("td");
+    const jadwalId = row.getAttribute('data-id');
+    const hari = row.getAttribute('data-hari');
+    const mapelId = row.querySelector('[data-mapel-id]').getAttribute('data-mapel-id');
+    const guruId = row.querySelector('[data-guru-id]').getAttribute('data-guru-id');
+    const ruangId = row.querySelector('[data-ruang-id]').getAttribute('data-ruang-id');
 
-    // Ambil data dari atribut data-* di baris tabel
-    const jadwalId = currentEditRow.getAttribute('data-id');
-    const hari = currentEditRow.getAttribute('data-hari');
-    const mapelId = cells[2].getAttribute('data-mapel-id');
-    const guruId = cells[3].getAttribute('data-guru-id');
-    const ruangId = cells[4].getAttribute('data-ruang-id');
+    console.log('Row attributes:', { jadwalId, hari, mapelId, guruId, ruangId }); // Debug untuk memastikan data diambil
 
     // Isi form dengan data dari baris tabel
     document.getElementById("jadwal_id").value = jadwalId;
-    document.getElementById("jamMulai").value = cells[0].innerText.trim();
-    document.getElementById("jamSelesai").value = cells[1].innerText.trim();
+    document.getElementById("jamMulai").value = row.children[0].innerText.trim();
+    document.getElementById("jamSelesai").value = row.children[1].innerText.trim();
     document.getElementById("hari").value = hari;
     document.getElementById("mapel").value = mapelId;
     document.getElementById("guru").value = guruId;
@@ -35,8 +34,10 @@ function openForm(mode, row = null) {
     document.getElementById("jadwalForm").reset();
   }
 
-  formModal.style.display = "flex";
+  console.log('Form modal:', formModal); // Debug untuk memastikan modal ditemukan
+  formModal.style.display = "flex"; // Tampilkan modal
 }
+
 
 function closeForm() {
   formModal.style.display = "none";
@@ -77,10 +78,12 @@ function submitForm() {
 }
 
 function editRow(icon) {
-  const row = icon.closest("tr");
-  openForm('edit', row);
-  currentEditRow = row;
+  console.log('Edit icon clicked'); // Debugging untuk memastikan fungsi dipanggil
+  const row = icon.closest("tr"); // Ambil baris tabel yang diklik
+  console.log('Row data:', row); // Debugging untuk memastikan baris tabel ditemukan
+  openForm('edit', row); // Panggil fungsi openForm dengan mode 'edit' dan baris tabel
 }
+
 
 function confirmDelete(icon) {
   rowToDelete = icon.closest("tr");

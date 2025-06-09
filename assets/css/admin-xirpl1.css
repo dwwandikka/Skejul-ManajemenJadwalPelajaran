@@ -122,7 +122,6 @@ nav ul li a {
   padding-left: 0.9375rem;
 }
 
-
 /* Dropdown Jadwal */
 .dropdown {
   position: relative;
@@ -471,13 +470,65 @@ tbody tr:nth-child(even) {
 .dropdown-menu-hari a.hari-item:last-child {
   border-bottom: none;
 }
+.dropdown-tambah-akun {
+  margin-top: 50px;
+}
 .show-hari {
   display: block;
 }
+.modal-content {
+  margin: 5% auto; /* jarak atas & bawah otomatis */
+  padding: 2rem;   /* jarak isi dari tepi */
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;        /* batas tinggi */
+  overflow-y: auto;        /* scroll jika konten terlalu tinggi */
+  width: 100%;
+  max-width: 450px;        /* batasi lebar modal */
+}
+.modal-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem; /* penting: supaya ada jarak atas-bawah jika layar kecil */
+  background-color: rgba(0, 0, 0, 0.5); /* efek gelap transparan */
+}
+
+.input-jadwal select {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: #fff;
+  appearance: none;
+
+  /* Custom panah dropdown */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='10' viewBox='0 0 14 10'%3E%3Cpath fill='%23999' d='M7 10L0 0h14z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1em;
+
+  /* Fix bug: remove double rendering (beberapa browser/tema bisa bug) */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  /* Optional: fix overlapping font issues */
+  line-height: normal;
+
+  /* Optional: reset any inherited style from framework */
+  box-shadow: none;
+}
+
 /* style.css */
 .jadwal-tambah {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 h1 {
@@ -597,4 +648,10 @@ tr:last-child td {
 .jadwal-tambah {
   gap: 32rem;
   margin-top: 20px;
+}
+
+#jadwalForm{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }

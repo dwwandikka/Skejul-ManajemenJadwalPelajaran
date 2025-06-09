@@ -47,8 +47,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const input = document.getElementById('jadwalHari');
   const table = document.getElementById('jadwalTabel');
   const hariText = selected ? selected.querySelector('.dropdown-hari-text') : null;
+  const tbody = document.querySelector('#jadwalTabel tbody');
 
-  if (wrapper && selected && list && hariText) {
+  if (wrapper && selected && list && hariText && tbody) {
     // Initially hide table if no day is selected
     if (hariText.textContent === 'Hari') {
       table.style.display = 'none';
@@ -72,11 +73,11 @@ document.addEventListener('DOMContentLoaded', function() {
         item.classList.add('selected');
         
         // Update dropdown text
-        const selectedDay = item.textContent;
+        const selectedDay = item.getAttribute('data-value');
         hariText.textContent = selectedDay;
         
         // Update hidden input value
-        input.value = item.getAttribute('data-value');
+        input.value = selectedDay;
         
         // Show table
         table.style.display = 'table';
@@ -86,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
         wrapper.classList.remove('open');
         
         // Fetch schedule data
-        fetchJadwalData(input.value);
+        fetchJadwalData(selectedDay);
       });
     });
 
@@ -100,29 +101,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Function to fetch schedule data via AJAX
   function fetchJadwalData(hari) {
-    // Show loading state
-    const tbody = document.querySelector('#jadwalTabel tbody');
-    if (tbody) {
-      tbody.innerHTML = '<tr><td colspan="4" class="null-table">Loading...</td></tr>';
-    }
-
-    fetch('guru-jadwallengkap.php' + encodeURIComponent(hari))
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.text();
-      })
-      .then(html => {
-        if (tbody) {
-          tbody.innerHTML = html;
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching schedule data:', error);
-        if (tbody) {
-          tbody.innerHTML = '<tr><td colspan="4" class="null-table">Error loading schedule data</td></tr>';
-        }
-      });
+  // Show loading state
+  if (tbody) {
+    tbody.innerHTML = '<tr><td colspan="5" class="null-table">Loading...</td></tr>';
   }
-});
+
+  fetch('guru-jadwallengkap.php?hari=' + encodeURIComponent(hari))
+    .then(response => {
+      console.log("Response status:", response.status); // Debug status
+      return response.text();
+    })
+    .then(html => {
+      console.log("HTML Response:", html); // Debug HTML respons
+      if (tbody) {
+        tbody.innerHTML = html;
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching schedule data:', error);
+      if (tbody) {
+        tbody.innerHTML = '<tr><td colspan="5" class="null-table">Error loading schedule data</td></tr>';
+      }
+    });
+}})

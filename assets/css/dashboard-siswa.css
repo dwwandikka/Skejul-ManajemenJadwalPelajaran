@@ -16,6 +16,10 @@ body {
   display: flex;
 }
 
+#hamburgerBtn {
+    display:none;
+}
+
 /* Header Logo Skensa - Logo Skensa Hebat*/
 .topbar {
   display: flex;
@@ -83,7 +87,6 @@ aside {
   width: fit-content;
   gap: 15px;
 }
-
 
 .text-beranda {
   color: rgb(0, 0, 0);
@@ -169,65 +172,64 @@ nav ul li a {
 
 /* Dropdown List */
 .dropdown-list {
-      display: none;
-      position: absolute;
-      top: 55%;
-      left: 5rem;
-      background-color: white;
-      min-width: 15rem;
-      border-radius: .625rem;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      z-index: 100;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      margin-top: 5px;
-    }
+  display: none;
+  position: absolute;
+  top: 55%;
+  left: 5rem;
+  background-color: white;
+  min-width: 15rem;
+  border-radius: 0.625rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 5px;
+}
 
-    .jadwal.active{
-      background-color: white;
-      width: 70px;
-      border-radius: .625rem;
-    }
+.jadwal.active {
+  background-color: white;
+  width: 70px;
+  border-radius: 0.625rem;
+}
 
-    .arrow-icon{
-      margin-left: 6rem;
-    }
+.arrow-icon {
+  margin-left: 6rem;
+}
 
-    .jadwal.active .text-jadwal{
-      color: black !important;
-    }
-    
-    .dropdown-list.show {
-      display: block;
-    }
-    
-    .dropdown-list li {
-      margin: 0;
-    }
-    
-    .dropdown-list a {
-      color: #333;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-      font-weight: 500;
-      transition: background-color 0.3s ease;
-    }
-    
-    .dropdown-list a:hover {
-      background-color: #0959FF;
-      color: white;
-    }
-    
-    .dropdown-list li:first-child a {
-      border-radius: .625rem .625rem 0 0;
-    }
-    
-    .dropdown-list li:last-child a {
-      border-radius: 0 0 .625rem .625rem;
-    }
-    
+.jadwal.active .text-jadwal {
+  color: black !important;
+}
+
+.dropdown-list.show {
+  display: block;
+}
+
+.dropdown-list li {
+  margin: 0;
+}
+
+.dropdown-list a {
+  color: #333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-list a:hover {
+  background-color: #0959ff;
+  color: white;
+}
+
+.dropdown-list li:first-child a {
+  border-radius: 0.625rem 0.625rem 0 0;
+}
+
+.dropdown-list li:last-child a {
+  border-radius: 0 0 0.625rem 0.625rem;
+}
 
 /* Header Welcome */
 #welcome-section {
@@ -250,7 +252,7 @@ nav ul li a {
   margin: 0;
   font-weight: 600;
 }
- /* Bagian Header  */
+/* Bagian Header  */
 .input-wrapper {
   align-items: center;
   display: flex;
@@ -573,8 +575,9 @@ nav ul li a {
 }
 .ilustrasi-motivasi {
   position: absolute;
-  width: 7%;
-  margin-left: 13%;
+  width: 30%;
+  margin-left: 50%;
+
   margin-top: 3%;
 }
 .card-box-motivasi p {
@@ -593,7 +596,6 @@ nav ul li a {
   height: 180px;
   background-color: white;
   border-radius: 16px;
-  padding: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   margin-bottom: 20px;
   margin-top: 20px;
@@ -614,34 +616,244 @@ nav ul li a {
   height: 40px;
 }
 
-@media (max-width: 900px) {
-
-  .topbar{
-    width: 100%;
-  }
-
-  .hamburger img{
-    width: 18px;
-  }
-  .hamburger {
-    display: block;
+@media (max-width: 400px) {
+  body {
+    margin: 0;
+    padding: 0;
   }
   .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
     position: fixed;
     left: 0;
     top: 0;
     height: 100vh;
-    width: 70vw;
-    max-width: 320px;
-    transform: translateX(-100%);
-    transition: transform 0.3s;
-    z-index: 1100;
-    border-radius: 0 20px 20px 0;
+    width: 250px;
+    background-color: #1e1e2f; /* Atur sesuai tema */
+    z-index: 1000;
   }
-  .sidebar.open {
+
+  .sidebar.active {
     transform: translateX(0);
   }
-  .container {
-    margin-left: 0 !important;
+  .skejul-blue {
+    padding-left: 10%;
+    padding-top: 20px;
+  }
+  .topbar {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    padding-left: 78%;
+    border-radius: 0;
+    width: 30%;
+  }
+  .gradient-line-bawah {
+    background: linear-gradient(90deg, #0959ff 0%, #00b1ff 56%, #d3f1ff 100%);
+    height: 30px;
+    border-radius: 30px;
+    display: none;
+  }
+  #hamburgerBtn img {
+    justify-content: flex-start;
+  }
+  .topbar-left {
+    padding-left: 0;
+  }
+  .date-card {
+    width: 260px;
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    z-index: 10;
+    margin: 8px 16px;
+    height: 26%;
+
+    /* Efek blur kaca */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    /* Border putih tipis */
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+  .school-name {
+    display: none;
+    font-size: 12px;
+    padding-left: 8px;
+  }
+  .text-welcome p {
+    margin: 0;
+    font-weight: 600;
+    margin-top: 30px;
+  }
+  .logo-smk {
+    display: none;
+    width: 35px;
+    height: 35px;
+  }
+
+  .logo-kanan {
+    display: none;
+    width: 35px;
+    height: 35px;
+    padding-left: 0px;
+  }
+
+  .hamburger {
+    width: 24px;
+    height: 24px;
+  }
+  .card-box-desc p {
+    font-weight: 500;
+    font-size: 15px;
+    padding-left: 5%;
+  }
+  .container-all {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  aside.sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 250px;
+    height: 100%;
+    z-index: 999;
+    transition: left 0.3s ease-in-out;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  aside.sidebar.active {
+    left: 0;
+  }
+  .card-box-desc strong {
+    color: #0959ff;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 5%;
+  }
+  .c .logo {
+    margin-left: 20px;
+  }
+  .logo {
+    margin-top: 10%;
+    margin-bottom: 40%;
+  }
+
+  .logo-skejul {
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+
+  nav ul {
+    padding-left: 20px;
+    margin-top: 30px;
+  }
+
+  .beranda,
+  .jadwal,
+  .logout {
+    padding: 10px 20px;
+  }
+
+  .info-box {
+    font-size: 12px;
+  }
+
+  .ilustrasi-sitebar {
+    width: 100px;
+    height: auto;
+  }
+
+  #dashboard-layout {
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .left-column,
+  .right-column {
+    width: 100%;
+  }
+
+  .card-box {
+    padding: 15px;
+  }
+
+  .profile-box {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    display: none;
+  }
+
+  .profile-img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .profile-text h1 {
+    font-size: 16px;
+  }
+
+  .card-box-tanggal,
+  .card-box-motivasi,
+  .card-box-desc {
+    width: 100%;
+  }
+
+  .slogan-skensa .card-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .slogan-skensa .card {
+    width: 90%;
+    margin-left: 20px;
+    margin-top: 15px;
+  }
+
+  .img-desc-skejul {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    display: none;
+  }
+
+  .emoji img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .dropdown-list {
+    position: static;
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .ilustrasi-welcomee {
+    display: none;
+  }
+  #welcome-section {
+    border-radius: 20px;
+    height: 100px;
+    background: linear-gradient(37.93deg, #0959ff 0%, #00b1ff 55%, #d3e0ff 90%);
+    width: 102%;
+  }
+
+  /* Hamburger toggle */
+  #hamburgerBtn {
+    display:block;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-right: 10px;
   }
 }

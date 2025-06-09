@@ -34,3 +34,14 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log("Dropdown elements not found!");
   }
 });
+
+function showLogoutModal(e) {
+  e.preventDefault();
+  document.getElementById('logout-modal').style.display = 'flex';
+}
+function hideLogoutModal() {
+  document.getElementById('logout-modal').style.display = 'none';
+}
+function confirmLogout() {
+  window.location.href = 'login.php';
+}

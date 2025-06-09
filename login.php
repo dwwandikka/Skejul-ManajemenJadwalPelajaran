@@ -126,7 +126,7 @@ function loginUser($user) {
       <div class="login-container-right">
         <h1>Selamat Datang!</h1>
         <h2>Masuk untuk cek jadwalmu <br> dengan mudah</h2>
-        <img src="assets/img/Sidebar-dashboard1.png" alt="" width="400">
+        <img src="assets/img/Sidebar-dashboard(1).svg" alt="" width="400">
         <p>Cara paling mudah buat cek <br> jadwal kamu setiap hari</p>
       </div>
     </div>

@@ -115,7 +115,9 @@ $result = $conn->query($sql);
             <a href="#">Jadwal Hari Ini</a>
           </div>
           <div class="profile-box">
-            <img src="assets/img/profile-avatar.svg" alt="Foto Profil" class="profile-img">
+              <a href="profile.php">
+          <img src="assets/img/profile-avatar.svg" alt="Foto Profil" class="profile-img">
+            </a>
             <div class="profile-text">
               <h1><?php echo $_SESSION['nama']; ?></h1>
               <p>Siswa Aktif</p>

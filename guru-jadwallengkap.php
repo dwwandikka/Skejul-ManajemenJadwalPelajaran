@@ -14,38 +14,58 @@ include 'db.php';
 
 $conn = mysqli_connect($host, $user, $pass, $db);
 
-if (isset($_GET['hari']) && isset($_SESSION['kelas_id'])) {
+// Cek apakah ini adalah permintaan AJAX dengan parameter `hari`
+if (isset($_GET['hari'])) {
     $hari = $_GET['hari'];
-    $kelas_id = $_SESSION['kelas_id'];
-    $result = $conn->query("
-        SELECT 
-          jk.jam_mulai, 
-          jk.jam_selesai, 
-          mp.nama_mapel AS mata_pelajaran,
-          g.nama_guru AS guru_pengajar,
-          r.nama_ruang AS ruang
-        FROM jadwal_kelas jk
-        JOIN mata_pelajaran mp ON jk.mapel_id = mp.mapel_id
-        JOIN ruangan r ON jk.ruang_id = r.ruang_id
-        JOIN guru g ON jk.guru_id = g.guru_id
-        WHERE jk.hari = '$hari' AND jk.kelas_id = '$kelas_id'
-    ");
-    if ($result && $result->num_rows > 0) {
+    $guru_id = $_SESSION['guru_id'];
+
+    $sql = "SELECT 
+              jk.jam_mulai, 
+              jk.jam_selesai, 
+              mp.nama_mapel AS mata_pelajaran,
+              k.nama_kelas AS kelas,
+              r.nama_ruang AS ruang
+            FROM jadwal_kelas jk
+            JOIN mata_pelajaran mp ON jk.mapel_id = mp.mapel_id
+            JOIN ruangan r ON jk.ruang_id = r.ruang_id
+            JOIN kelas k ON jk.kelas_id = k.kelas_id
+            WHERE jk.hari = ? AND jk.guru_id = ?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("si", $hari, $guru_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             echo "<tr>
                     <td>" . date('H:i', strtotime($row['jam_mulai'])) . "</td>
                     <td>" . date('H:i', strtotime($row['jam_selesai'])) . "</td>
                     <td>" . $row['mata_pelajaran'] . "</td>
-                    <td>" . $row['guru_pengajar'] . "</td>
+                    <td>" . $row['kelas'] . "</td>
                     <td>" . $row['ruang'] . "</td>
                   </tr>";
         }
     } else {
         echo "<tr><td colspan='5'>Tidak ada data jadwal</td></tr>";
     }
-    exit; // Penting! Supaya AJAX hanya dapat isi tabel
+    exit; // Hentikan eksekusi untuk menghindari pengiriman HTML lainnya
 }
+
+// Jika bukan permintaan AJAX, tampilkan halaman HTML seperti biasa
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skejul - Jadwal Lengkap</title>
+  <link rel="stylesheet" href="assets/css/jadwallengkap-siswa.css">
+</head>
+<body>
+<!-- Konten HTML lainnya -->
+</body>
+</html>
   <header class="topbar">
     <div class="topbar-left">
       <img src="assets/img/logo-smk.png" alt="Logo SMK" class="logo-smk" />
@@ -69,7 +89,7 @@ if (isset($_GET['hari']) && isset($_SESSION['kelas_id'])) {
         <nav>
           <ul>
             <li>
-              <a href="siswa-dashboard.php" class="beranda">
+              <a href="guru-dashboard.php" class="beranda">
                 <img class="home-icon" src="assets/img/home-fill.svg" alt="Home Icon">
                 <span class="text-beranda">Beranda</span>
               </a>
@@ -113,7 +133,7 @@ if (isset($_GET['hari']) && isset($_SESSION['kelas_id'])) {
             <img src="assets/img/profile-avatar.svg" alt="Foto Profil" class="profile-img">
             <div class="profile-text">
               <h1><?php echo $_SESSION['nama']; ?></h1>
-              <p>Siswa Aktif</p>
+              <p>Guru Aktif</p>
             </div>
           </div>
         </div>
@@ -123,20 +143,20 @@ if (isset($_GET['hari']) && isset($_SESSION['kelas_id'])) {
         <h1 style="margin: 0;">Jadwal Lengkap</h1>
         <!-- Tempatkan di dalam jadwal-lengkap-item -->
           <div class="dropdown-hari-wrapper">
-            <div class="dropdown-hari-selected" id="dropdownHariSelected">
-              <img src="assets/img/kalender-white.svg" class="icon-hari" alt="Kalender">
-              <span class="dropdown-hari-text">Hari</span>
-              <img src="assets/img/arrow-white.svg" class="icon-arrow" alt="Arrow">
-            </div>
-            <ul class="dropdown-hari-list" id="dropdownHariList">
-              <li data-value="Senin">Senin</li>
-              <li data-value="Selasa">Selasa</li>
-              <li data-value="Rabu">Rabu</li>
-              <li data-value="Kamis">Kamis</li>
-              <li data-value="Jumat">Jumat</li>
-            </ul>
-            <input type="hidden" name="jadwal-hari" id="jadwalHari">
-          </div>
+  <div class="dropdown-hari-selected" id="dropdownHariSelected">
+    <img src="assets/img/kalender-white.svg" class="icon-hari" alt="Kalender">
+    <span class="dropdown-hari-text">Hari</span>
+    <img src="assets/img/arrow-white.svg" class="icon-arrow" alt="Arrow">
+  </div>
+  <ul class="dropdown-hari-list" id="dropdownHariList">
+    <li data-value="Senin">Senin</li>
+    <li data-value="Selasa">Selasa</li>
+    <li data-value="Rabu">Rabu</li>
+    <li data-value="Kamis">Kamis</li>
+    <li data-value="Jumat">Jumat</li>
+  </ul>
+  <input type="hidden" name="jadwal-hari" id="jadwalHari">
+</div>
       </div>
       <table id="jadwalTabel">
         <thead>
@@ -144,11 +164,27 @@ if (isset($_GET['hari']) && isset($_SESSION['kelas_id'])) {
             <th>JAM MULAI</th>
             <th>JAM SELESAI</th>
             <th>MATA PELAJARAN</th>
+            <th>KELAS</th>
             <th>RUANG</th>
           </tr>
         </thead>
-        <tbody>
-        </tbody>
+<tbody>
+  <!-- <?php
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      echo "<tr>
+              <td>" . date('H:i', strtotime($row['jam_mulai'])) . "</td>
+              <td>" . date('H:i', strtotime($row['jam_selesai'])) . "</td>
+              <td>" . $row['nama_mapel'] . "</td>
+              <td>" . $row['nama_kelas'] . "</td> <!-- Kelas -->
+              <td>" . $row['nama_ruang'] . "</td>
+            </tr>";
+    }
+  } else {
+    echo "<tr><td colspan='5'>Tidak ada data jadwal</td></tr>";
+  }
+  ?> -->
+</tbody>
       </table>
         </div>
       </div>
