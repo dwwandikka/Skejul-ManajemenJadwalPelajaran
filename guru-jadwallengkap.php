@@ -14,9 +14,9 @@ include 'db.php';
 
 $conn = mysqli_connect($host, $user, $pass, $db);
 
-if (isset($_GET['hari']) && isset($_SESSION['guru_id'])) {
+if (isset($_GET['hari']) && isset($_SESSION['kelas_id'])) {
     $hari = $_GET['hari'];
-    $guru_id = $_SESSION['guru_id'];
+    $kelas_id = $_SESSION['kelas_id'];
     $result = $conn->query("
         SELECT 
           jk.jam_mulai, 
@@ -28,7 +28,7 @@ if (isset($_GET['hari']) && isset($_SESSION['guru_id'])) {
         JOIN mata_pelajaran mp ON jk.mapel_id = mp.mapel_id
         JOIN ruangan r ON jk.ruang_id = r.ruang_id
         JOIN guru g ON jk.guru_id = g.guru_id
-        WHERE jk.hari = '$hari' AND jk.guru_id = '$guru_id'
+        WHERE jk.hari = '$hari' AND jk.kelas_id = '$kelas_id'
     ");
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -41,7 +41,7 @@ if (isset($_GET['hari']) && isset($_SESSION['guru_id'])) {
                   </tr>";
         }
     } else {
-        echo "<tr><td colspan='4'>Tidak ada data jadwal</td></tr>";
+        echo "<tr><td colspan='5'>Tidak ada data jadwal</td></tr>";
     }
     exit; // Penting! Supaya AJAX hanya dapat isi tabel
 }
@@ -148,35 +148,6 @@ if (isset($_GET['hari']) && isset($_SESSION['guru_id'])) {
           </tr>
         </thead>
         <tbody>
-<?php
-$guru_id = $_SESSION['guru_id'];
-$hari_default = 'Senin'; // Default hari Senin
-$result = $conn->query("
-    SELECT 
-      jk.jam_mulai, 
-      jk.jam_selesai, 
-      mp.nama_mapel AS mata_pelajaran,
-      g.nama_guru AS guru_pengajar,
-      r.nama_ruang AS ruang
-    FROM jadwal_kelas jk
-    JOIN mata_pelajaran mp ON jk.mapel_id = mp.mapel_id
-    JOIN ruangan r ON jk.ruang_id = r.ruang_id
-    JOIN guru g ON jk.guru_id = g.guru_id
-    WHERE jk.hari = '$hari_default' AND jk.guru_id = '$guru_id'
-");
-if ($result && $result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>
-                <td>" . date('H:i', strtotime($row['jam_mulai'])) . "</td>
-                <td>" . date('H:i', strtotime($row['jam_selesai'])) . "</td>
-                <td>" . $row['mata_pelajaran'] . "</td>
-                <td>" . $row['ruang'] . "</td>
-              </tr>";
-    }
-} else {
-    echo "<tr><td colspan='4'>Tidak ada data jadwal</td></tr>";
-}
-?>
         </tbody>
       </table>
         </div>
