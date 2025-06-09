@@ -174,7 +174,7 @@ while ($row = $jadwalList->fetch_assoc()):
                             $guruList = $conn->query("SELECT guru_id, nama_guru FROM guru");
                             $ruangList = $conn->query("SELECT ruang_id, nama_ruang FROM ruangan");
                         ?>
-        <form method="POST" id="jadwalForm">
+        <form method="POST" id="jadwalForm">  
             <div class="input-jadwal">
                 <label for="jamMulai">Jam Mulai</label>
                 <input type="time" id="jamMulai" name="jamMulai" required>
