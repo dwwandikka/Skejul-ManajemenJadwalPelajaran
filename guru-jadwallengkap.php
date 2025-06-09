@@ -81,8 +81,8 @@ if (isset($_GET['hari']) && isset($_SESSION['guru_id'])) {
                 <img class="arrow-icon" src="assets/img/arrow-black.svg" alt="Arrow Icon">
               </a>
               <ul class="dropdown-list">
-                <li><a  class="jadwal-hariini" href="jadwalhari-siswa.php">Jadwal Hari Ini</a></li>
-                <li><a class="jadwal-lengkap" href="#">Jadwal Lengkap</a></li>
+                <li><a  class="jadwal-hariini" href="guru-jadwalhari.php">Jadwal Hari Ini</a></li>
+                <li><a class="jadwal-lengkap" href="guru-jadwallengkap.php">Jadwal Lengkap</a></li>
               </ul>
             </li>
           </ul>

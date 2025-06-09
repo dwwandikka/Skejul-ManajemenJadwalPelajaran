@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+// Cek apakah user sudah login dan memiliki role siswa
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'siswa') {
+    header("Location: login.php");
+    exit();
+}
+
+// Ambil data dari session
+$nama_siswa = $_SESSION['nama'] ?? 'Nama Siswa';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,16 +19,6 @@
   <link rel="stylesheet" href="assets/css/dashboard-siswa.css" />
 </head>
 <body>
-
-<?php 
-session_start();
-if (!isset($_SESSION['nama'])) {
-    // Jika pengguna belum login, redirect ke halaman login
-    header("Location: login.php");
-    exit();
-}
-?>
-
   <!-- Header -->
   <header class="topbar">
     <div class="topbar-left">
@@ -60,7 +62,7 @@ if (!isset($_SESSION['nama'])) {
           <img src="assets/img/ilustrasi-sitebar.png" alt="Ilustrasi Jadwal" class="ilustrasi-sitebar" />
           <p>Lihat dan kelola jadwal pelajaran <br/> mudah dengan SkeJul</p>
         </div>
-        <a href="#" class="logout">
+        <a href="logout.php" class="logout">
           <img src="assets/img/icon-logout-white.svg" alt="">
           <span class="text-keluar">Keluar</span>
         </a>
@@ -73,7 +75,7 @@ if (!isset($_SESSION['nama'])) {
       <div class="welcome-input-emoji">
         <div class="text-welcome">
           <p>Selamat Datang,</p>
-          <h1><?php echo $_SESSION['nama']; ?></h1>
+          <h1><?php echo htmlspecialchars($nama_siswa); ?></h1>
         </div>
         <div id="welcome-section" class="card-box">
           <div>
@@ -134,7 +136,7 @@ if (!isset($_SESSION['nama'])) {
         <div class="card-box-desc">
           <div class="skejul-blue-line">
             <img src="assets/img/logo-skejul-blue.svg" alt="" class="skejul-blue">
-            <div class="gradient-line"></div>
+            <div class="gradient-line-bawah"></div>
           </div>
           <div class="desc-p-strong-skejul">
             <p>
@@ -148,7 +150,7 @@ if (!isset($_SESSION['nama'])) {
       <div class="profile-box">
         <img src="assets/img/profile-avatar.svg" alt="Foto Profil" class="profile-img">
         <div class="profile-text">
-          <h1><?php echo $_SESSION['nama']; ?></h1>
+          <h1><?php echo htmlspecialchars($nama_siswa); ?></h1>
           <p>Siswa Aktif</p>
         </div>
       </div>

@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+// Cek apakah user sudah login dan memiliki role guru
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'guru') {
+    header("Location: login.php");
+    exit();
+}
+
+// Ambil data dari session
+$nama_guru = $_SESSION['nama'] ?? 'Nama Guru';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +62,7 @@
           <img src="assets/img/ilustrasi-sitebar.png" alt="Ilustrasi Jadwal" class="ilustrasi-sitebar" />
           <p>Lihat dan kelola jadwal pelajaran <br/> mudah dengan SkeJul</p>
         </div>
-        <a href="#" class="logout">
+        <a href="logout.php" class="logout">
           <img src="assets/img/icon-logout-white.svg" alt="">
           <span class="text-keluar">Keluar</span>
         </a>
@@ -63,7 +75,7 @@
       <div class="welcome-input-emoji">
         <div class="text-welcome">
           <p>Selamat Datang,</p>
-          <h1>Kadek Unggah Adi Nope</h1>
+          <h1><?php echo htmlspecialchars($nama_guru); ?></h1>
         </div>
         <div id="welcome-section" class="card-box">
           <div>
@@ -138,7 +150,7 @@
       <div class="profile-box">
         <img src="assets/img/profile-avatar.svg" alt="Foto Profil" class="profile-img">
         <div class="profile-text">
-          <h1>Kadek Unggah Adi Nope</h1>
+          <h1><?php echo htmlspecialchars($nama_guru); ?></h1>
           <p>Guru Aktif</p>
         </div>
       </div>
