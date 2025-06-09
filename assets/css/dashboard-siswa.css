@@ -388,7 +388,7 @@ nav ul li a {
 .img-desc-skejul {
   position: absolute;
   width: 16%;
-  margin-top: 31%;
+  margin-top: 23%;
   margin-right: 5%;
 }
 .card-box-desc {
@@ -447,7 +447,7 @@ nav ul li a {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   position: absolute;
   z-index: 10;
-  margin: 16px;
+  margin: 8px 16px;
   height: 30%;
 
   /* Efek blur kaca */
@@ -586,7 +586,7 @@ nav ul li a {
   font-size: 23px;
   color: #0959ff;
   font-weight: bold;
-  line-height: 25px;
+  /* line-height: 25px; */
 }
 
 .card-box-motivasi {

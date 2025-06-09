@@ -156,8 +156,40 @@ if (!isset($_SESSION['nama'])) {
         <div class="date-card">
           <div class="badge">Hari ini</div>
           <div class="date-text">
-            <h1>Senin</h1>
-            <h2>3 Juli 2025</h2>
+            <?php
+            date_default_timezone_set('Asia/Makassar'); // atau Asia/Jakarta
+
+            // Array hari dan bulan Indonesia
+            $hariIndo = [
+                'Sunday'    => 'Minggu',
+                'Monday'    => 'Senin',
+                'Tuesday'   => 'Selasa',
+                'Wednesday' => 'Rabu',
+                'Thursday'  => 'Kamis',
+                'Friday'    => 'Jumat',
+                'Saturday'  => 'Sabtu'
+            ];
+            $bulanIndo = [
+                'January'   => 'Januari',
+                'February'  => 'Februari',
+                'March'     => 'Maret',
+                'April'     => 'April',
+                'May'       => 'Mei',
+                'June'      => 'Juni',
+                'July'      => 'Juli',
+                'August'    => 'Agustus',
+                'September' => 'September',
+                'October'   => 'Oktober',
+                'November'  => 'November',
+                'December'  => 'Desember'
+            ];
+
+            $hariIni = $hariIndo[date('l')];
+            $bulanIni = $bulanIndo[date('F')];
+            $tanggalIndo = date('j') . ' ' . $bulanIni . ' ' . date('Y');
+            ?>
+            <h1><?php echo $hariIni; ?></h1>
+            <h2><?php echo $tanggalIndo; ?></h2>
           </div>
         </div>
         <div class="shapes">

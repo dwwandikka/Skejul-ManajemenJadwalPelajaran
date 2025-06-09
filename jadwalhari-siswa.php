@@ -22,37 +22,34 @@ if (mysqli_connect_errno()) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$items_per_page = 5;
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$start_index = ($page - 1) * $items_per_page;
+// Ambil hari ini dalam format enum (Indonesia)
+date_default_timezone_set('Asia/Makassar'); // atau Asia/Jakarta
+$hariIndo = [
+    'Sunday'    => 'Minggu',
+    'Monday'    => 'Senin',
+    'Tuesday'   => 'Selasa',
+    'Wednesday' => 'Rabu',
+    'Thursday'  => 'Kamis',
+    'Friday'    => 'Jumat',
+    'Saturday'  => 'Sabtu'
+];
+$hariIni = $hariIndo[date('l')];
 
+// Filter jadwal sesuai hari ini dan kelas siswa
+$kelas_id = $_SESSION['kelas_id'];
 $sql = "SELECT 
-      jk.jadwal_id, 
-      jk.kelas_id, 
-      mp.nama_mapel,
-      r.nama_ruang,
-      g.nama_guru,
-      jk.guru_id, 
-      jk.hari, 
       jk.jam_mulai, 
       jk.jam_selesai, 
-      jk.ruang_id, 
-      jk.guru_id
+      mp.nama_mapel,
+      r.nama_ruang,
+      g.nama_guru
     FROM jadwal_kelas jk
     JOIN mata_pelajaran mp ON jk.mapel_id = mp.mapel_id
     JOIN ruangan r ON jk.ruang_id = r.ruang_id
     JOIN guru g ON jk.guru_id = g.guru_id
-    LIMIT $start_index, $items_per_page";
+    WHERE jk.hari = '$hariIni' AND jk.kelas_id = '$kelas_id'
+    ORDER BY jk.jam_mulai ASC";
 $result = $conn->query($sql);
-if (!$result) {
-  die("Query failed: " . $conn->error);
-}
-
-$total_sql = "SELECT COUNT(*) FROM jadwal_kelas";
-$total_result = $conn->query($total_sql);
-$total_row = $total_result ? $total_result->fetch_row()[0] : 0;
-
-$total_pages = ceil($total_row / $items_per_page);
 ?>
   <header class="topbar">
     <div class="topbar-left">
@@ -140,7 +137,7 @@ $total_pages = ceil($total_row / $items_per_page);
         </thead>
         <tbody>
           <?php
-          if ($result->num_rows > 0) {
+          if ($result && $result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
               echo "<tr>
                       <td>" . date('H:i', strtotime($row['jam_mulai'])) . "</td>
@@ -151,7 +148,7 @@ $total_pages = ceil($total_row / $items_per_page);
                     </tr>";
             }
           } else {
-            echo "<tr><td colspan='5'>Tidak ada data jadwal</td></tr>";
+            echo "<tr><td colspan='5' style='text-align:center;'>Tidak ada data jadwal</td></tr>";
           }
           ?>
         </tbody>
