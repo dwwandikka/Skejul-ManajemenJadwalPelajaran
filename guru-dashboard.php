@@ -148,7 +148,9 @@ $nama_guru = $_SESSION['nama'] ?? 'Nama Guru';
     </div>
     <div class="right-column">
       <div class="profile-box">
-        <img src="assets/img/profile-avatar.svg" alt="Foto Profil" class="profile-img">
+        <a href="profile.php">
+          <img src="assets/img/profile-avatar.svg" alt="Foto Profil" class="profile-img">
+        </a>
         <div class="profile-text">
           <h1><?php echo htmlspecialchars($nama_guru); ?></h1>
           <p>Guru Aktif</p>

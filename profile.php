@@ -149,7 +149,7 @@ switch($role) {
                         <img src="assets/img/profile-avatar.svg" alt="Profile">
                     </div>
                     <div class="profile-info">
-                        <h2><?php echo htmlspecialchars($display_username); ?></h2>
+                        <h2><?php echo htmlspecialchars($display_name); ?></h2>
                         <div class="profile-status"><?php echo htmlspecialchars($status_text); ?></div>
                     </div>
                 </div>
