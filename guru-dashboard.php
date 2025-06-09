@@ -41,7 +41,7 @@
               <!-- Dropdown menu -->
               <ul class="dropdown-list">
                 <li><a href="guru-jadwalhari.php">Jadwal Hari Ini</a></li>
-                <li><a href="#">Jadwal Lengkap</a></li>
+                <li><a href="guru-jadwallengkap.php">Jadwal Lengkap</a></li>
               </ul>
             </li>
           </ul>
