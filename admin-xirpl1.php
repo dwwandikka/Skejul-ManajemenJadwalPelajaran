@@ -9,6 +9,41 @@
 </head>
 
 <body class="bg-blue-50 min-h-screen p-6">
+
+<?php
+session_start();
+include 'db.php';
+
+$conn = mysqli_connect($host, $user, $pass, $db);
+
+// Handler AJAX untuk tambah jadwal
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'tambah') {
+    $jamMulai = $_POST['jamMulai'];
+    $jamSelesai = $_POST['jamSelesai'];
+    $mapel = $_POST['mapel'];
+    $guru = $_POST['guru'];
+    $ruang = $_POST['ruang'];
+    $hari = 'Selasa'; // Atur sesuai kebutuhan
+    $kelas_id = $_POST['kelas_id'] ?? null; // Ambil dari POST
+
+    // Contoh query insert (pastikan nama tabel dan kolom sesuai database kamu)
+    $sql = "INSERT INTO jadwal_kelas (jam_mulai, jam_selesai, mapel_id, guru_id, ruang_id, hari, kelas_id)
+            VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+    // Ambil id mapel, guru, ruang dari nama (atau sesuaikan dengan struktur DB kamu)
+    // Untuk contoh, langsung masukkan string (jika id, lakukan query select id dulu)
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssssssi", $jamMulai, $jamSelesai, $mapel, $guru, $ruang, $hari, $kelas_id);
+
+    if ($stmt->execute()) {
+        echo 'success';
+    } else {
+        echo 'error: ' . $stmt->error; // Tampilkan error detail
+    }
+    exit;
+}
+?>
+
     <header class="topbar">
         <div class="topbar-left">
             <img src="assets/img/logo-smk.png" alt="Logo SMK" class="logo-smk" />
@@ -99,21 +134,33 @@
                                 <th>AKSI</th>
                             </tr>
                         </thead>
-                        <tbody id="jadwalBody">
-                            <!-- Data akan dimuat -->
-                            <tr>
-                                <td>07.30</td>
-                                <td>08.10</td>
-                                <td class="highlight">Pemrograman Grafis</td>
-                                <td class="highlight">Pratyaksa Kepakisan</td>
-                                <td>Lab RPL 1</td>
-                                <td>
-                                    <img src="icons/edit.svg" class="icon" onclick="editRow(this)">
-                                    <img src="icons/delete.svg" class="icon" onclick="confirmDelete(this)">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <tbody id="jadwalBody">
+                    <?php
+// Ambil data jadwal dari database
+$jadwalList = $conn->query("SELECT j.jam_mulai, j.jam_selesai, m.nama_mapel, g.nama_guru, r.nama_ruang 
+                            FROM jadwal_kelas j
+                            JOIN mata_pelajaran m ON j.mapel_id = m.mapel_id
+                            JOIN guru g ON j.guru_id = g.guru_id
+                            JOIN ruangan r ON j.ruang_id = r.ruang_id
+                            WHERE j.kelas_id = 3030"); // Sesuaikan kelas_id dengan kebutuhan
+
+// Tampilkan data jadwal
+while ($row = $jadwalList->fetch_assoc()):
+?>
+    <tr>
+        <td><?= date('H:i', strtotime($row['jam_mulai'])) ?></td>
+        <td><?= date('H:i', strtotime($row['jam_selesai'])) ?></td>
+        <td class="highlight"><?= htmlspecialchars($row['nama_mapel']) ?></td>
+        <td class="highlight"><?= htmlspecialchars($row['nama_guru']) ?></td>
+        <td><?= htmlspecialchars($row['nama_ruang']) ?></td>
+        <td>
+            <img src="icons/edit.svg" class="icon" onclick="editRow(this)">
+            <img src="icons/delete.svg" class="icon" onclick="confirmDelete(this)">
+        </td>
+    </tr>
+<?php endwhile; ?>
+                    </tbody>
+                </table>
                 </div>
 
                 <!-- Form Modal (Tambah/Edit) -->
@@ -121,32 +168,54 @@
                     <div class="modal-content">
                         <h2 id="formTitle">Tambah Jadwal</h2>
                         <div class="label-hari">Selasa, XI RPL 1</div>
-                        <form id="jadwalForm">
-                            <div class="input-jadwal">
-                                <label for="jamMulai">Jam Mulai</label>
-                                <input type="time" id="jamMulai" required>
-                            </div>
-                            <div class="input-jadwal">
-                                <label for="jamSelesai">Jam Selesai</label>
-                                <input type="time" id="jamSelesai" required>
-                            </div>
-                            <div class="input-jadwal">
-                                <label for="mapel">Mata Pelajaran</label>
-                                <input type="text" id="mapel" placeholder="Masukkan MATA PELAJARAN" required>
-                            </div>
-                            <div class="input-jadwal">
-                                <label for="guru">Guru Pengajar</label>
-                                <input type="text" id="guru" placeholder="Masukkan GURU PENGAJAR" required>
-                            </div>
-                            <div class="input-jadwal">
-                                <label for="ruang">Ruang</label>
-                                <input type="text" id="ruang" placeholder="Masukkan RUANG" required>
-                            </div>
-                            <div class="button-batal-tambah">
-                                <button type="button" id="closeBtn" onclick="closeForm()">Batal</button>
-                                <button type="button" id="submitBtn" onclick="submitForm()">Tambah</button>
-                            </div>
-                        </form>
+                        <?php
+                            // Ambil data dari database
+                            $mapelList = $conn->query("SELECT mapel_id, nama_mapel FROM mata_pelajaran");
+                            $guruList = $conn->query("SELECT guru_id, nama_guru FROM guru");
+                            $ruangList = $conn->query("SELECT ruang_id, nama_ruang FROM ruangan");
+                        ?>
+        <form method="POST" id="jadwalForm">
+            <div class="input-jadwal">
+                <label for="jamMulai">Jam Mulai</label>
+                <input type="time" id="jamMulai" name="jamMulai" required>
+            </div>
+            <div class="input-jadwal">
+                <label for="jamSelesai">Jam Selesai</label>
+                <input type="time" id="jamSelesai" name="jamSelesai" required>
+            </div>
+            <div class="input-jadwal">
+                <label for="mapel">Mata Pelajaran</label>
+                <select id="mapel" name="mapel" required>
+        <option value="">Pilih Mata Pelajaran</option>
+        <?php while($row = $mapelList->fetch_assoc()): ?>
+            <option value="<?= $row['mapel_id'] ?>"><?= htmlspecialchars($row['nama_mapel']) ?></option>
+        <?php endwhile; ?>
+        </select>
+            </div>
+            <div class="input-jadwal">
+                <label for="guru">Guru Pengajar</label>
+                <select id="guru" name="guru" required>
+        <option value="">Pilih Guru</option>
+        <?php while($row = $guruList->fetch_assoc()): ?>
+            <option value="<?= $row['guru_id'] ?>"><?= htmlspecialchars($row['nama_guru']) ?></option>
+        <?php endwhile; ?>
+        </select>
+            </div>
+            <div class="input-jadwal">
+                <label for="ruang">Ruang</label>
+                <select id="ruang" name="ruang" required>
+        <option value="">Pilih Ruang</option>
+        <?php while($row = $ruangList->fetch_assoc()): ?>
+            <option value="<?= $row['ruang_id'] ?>"><?= htmlspecialchars($row['nama_ruang']) ?></option>
+        <?php endwhile; ?>
+        </select>
+        <input type="hidden" name="kelas_id" value="3030">
+            </div>
+            <div class="button-batal-tambah">
+                <button type="button" id="closeBtn" onclick="closeForm()">Batal</button>
+                <button type="submit" id="submitBtn">Tambah</button>
+            </div>
+        </form>
                     </div>
                 </div>
 

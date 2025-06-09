@@ -21,6 +21,9 @@ $nama_siswa = $_SESSION['nama'] ?? 'Nama Siswa';
 <body>
   <!-- Header -->
   <header class="topbar">
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+        <img class="hamburger" src="assets/img/List.svg" alt="Menu">
+        </button>
     <div class="topbar-left">
       <img src="assets/img/logo-smk.png" alt="Logo SMK" class="logo-smk" />
       <span class="school-name">SMK NEGERI 1 DENPASAR</span>

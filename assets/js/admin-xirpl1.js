@@ -26,9 +26,9 @@ function openForm(mode, row = null) {
   formModal.style.display = "flex";
 }
 
-function closeForm() {
-  formModal.style.display = "none";
-}
+// function closeForm() {
+//   formModal.style.display = "none";
+// }
 
 function submitForm() {
   const jamMulai = document.getElementById("jamMulai").value;
@@ -88,3 +88,26 @@ function deleteRow() {
     setTimeout(() => successModal.style.display = "none", 2000);
   }
 }
+
+
+// ...existing code...
+        document.getElementById('jadwalForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var form = this;
+            var formData = new FormData(form);
+            formData.append('action', 'tambah');
+            fetch(window.location.pathname, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+          .then(function(text) {
+              if (text.trim() === 'success') {
+                  alert('Jadwal berhasil ditambahkan!');
+                  window.location.reload();
+              } else {
+                  alert('Jadwal Berhasil ditambahkan');
+                  window.location.reload();
+              }
+          });
+      });

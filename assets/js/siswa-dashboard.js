@@ -34,3 +34,15 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log("Dropdown elements not found!");
   }
 });
+
+document.getElementById('hamburgerBtn').onclick = function() {
+  document.getElementById('sidebar').classList.toggle('open');
+};
+// Tutup sidebar jika klik di luar sidebar (opsional)
+document.addEventListener('click', function(e) {
+  const sidebar = document.getElementById('sidebar');
+  const hamburger = document.getElementById('hamburgerBtn');
+  if (sidebar.classList.contains('open') && !sidebar.contains(e.target) && !hamburger.contains(e.target)) {
+    sidebar.classList.remove('open');
+  }
+});
