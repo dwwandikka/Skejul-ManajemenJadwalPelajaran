@@ -35,15 +35,4 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// document.querySelector('.jadwal-lengkap').addEventListener('mouseenter', function() {
-//   document.querySelector('.jadwal-hariini').style.backgroundColor = 'white';
-//   document.querySelector('.jadwal-hariini').style.color = 'black';
-// });
-
-// document.querySelector('.jadwal-lengkap').addEventListener('mouseleave', function() {
-//   document.querySelector('.jadwal-hariini').style.backgroundColor = '#0959ff';  // Kembali ke default
-//   document.querySelector('.jadwal-hariini').style.color = 'white';  // Kembali ke default
-// });
-
-
 

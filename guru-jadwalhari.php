@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Skejul - Jadwal Hari Ini</title>
-  <link rel="stylesheet" href="assets/css/jadwalhari-siswa.css">
+  <link rel="stylesheet" href="assets/css/guru-jadwalhari.css">
 </head>
 <body>
 
@@ -77,7 +77,7 @@ $total_pages = ceil($total_row / $items_per_page);
         <nav>
           <ul>
             <li>
-              <a href="siswa-dashboard.php" class="beranda">
+              <a href="guru-dashboard.php" class="beranda">
                 <img class="home-icon" src="assets/img/home-fill.svg" alt="Home Icon">
                 <span class="text-beranda">Beranda</span>
               </a>
@@ -89,8 +89,8 @@ $total_pages = ceil($total_row / $items_per_page);
                 <img class="arrow-icon" src="assets/img/arrow-black.svg" alt="Arrow Icon">
               </a>
               <ul class="dropdown-list">
-                <li><a  class="jadwal-hariini" href="#">Jadwal Hari Ini</a></li>
-                <li><a class="jadwal-lengkap" href="jadwallengkap-siswa.php">Jadwal Lengkap</a></li>
+                <li><a href="#">Jadwal Hari Ini</a></li>
+                <li><a href="#">Jadwal Lengkap</a></li>
               </ul>
             </li>
           </ul>
@@ -120,8 +120,8 @@ $total_pages = ceil($total_row / $items_per_page);
           <div class="profile-box">
             <img src="assets/img/profile-avatar.svg" alt="Foto Profil" class="profile-img">
             <div class="profile-text">
-              <h1><?php echo $_SESSION['nama']; ?></h1>
-              <p>Siswa Aktif</p>
+              <h1>Kadek Unggah Adi Nope</h1>
+              <p>Guru Aktif</p>
             </div>
           </div>
         </div>
@@ -134,7 +134,6 @@ $total_pages = ceil($total_row / $items_per_page);
             <th>JAM MULAI</th>
             <th>JAM SELESAI</th>
             <th>MATA PELAJARAN</th>
-            <th>GURU PENGAJAR</th>
             <th>RUANG</th>
           </tr>
         </thead>
@@ -146,12 +145,11 @@ $total_pages = ceil($total_row / $items_per_page);
                       <td>" . date('H:i', strtotime($row['jam_mulai'])) . "</td>
                       <td>" . date('H:i', strtotime($row['jam_selesai'])) . "</td>
                       <td>" . $row['nama_mapel'] . "</td>
-                      <td>" . $row['nama_guru'] . "</td>
                       <td>" . $row['nama_ruang'] . "</td>
                     </tr>";
             }
           } else {
-            echo "<tr><td colspan='5'>Tidak ada data jadwal</td></tr>";
+            echo "<tr><td colspan='4'>Tidak ada data jadwal</td></tr>";
           }
           ?>
         </tbody>
@@ -161,6 +159,6 @@ $total_pages = ceil($total_row / $items_per_page);
     </div>
   </div>
 
-  <script src="assets/js/jadwalhari-siswa.js"></script>
+  <script src="assets/js/guru-jadwalhari.js"></script>
 </body>
 </html>

@@ -9,8 +9,7 @@ $error = ''; //Variabel untuk pesan error
 if ($_SERVER['REQUEST_METHOD'] == 'POST') { 
   /* Mengecek apakah user sudah submit form (klik tombol "Buat Akun")
      Jika belum submit, PHP akan langsung ke bagian HTML
-     Jika sudah submit, akan jalankan kode di dalam if ini */
-    
+     Jika sudah submit, akan jalankan kode di dalam if ini */ 
     // Ambil data dari form
     $nama_lengkap = trim($_POST['nama_lengkap'] ?? ''); //$_POST['nama_field'] Mengambil data dari input form
     $username = trim($_POST['username'] ?? ''); //trim() Menghilangkan spasi di awal dan akhir text
@@ -48,10 +47,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors[] = "Kategori/peran harus dipilih";
     }
     
-    // Validasi kelas_id jika peran adalah murid
-    if ($peran == 'murid' && empty($kelas_id)) { //$peran == 'murid' Mengecek apakah variabel $peran bernilai 'murid'
+    // Validasi kelas_id jika peran adalah siswa
+    if ($peran == 'siswa' && empty($kelas_id)) { //$peran == 'siswa' Mengecek apakah variabel $peran bernilai 'siswa'
             //&& (AND) Kedua kondisi harus TRUE agar blok kode dijalankan, Jika salah satu FALSE, maka blok diabaikan
-        $errors[] = "Kelas harus dipilih untuk murid";
+        $errors[] = "Kelas harus dipilih untuk siswa";
     }
     
     // Cek apakah username sudah ada
@@ -75,21 +74,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     // Jika tidak ada error, simpan data
     if (empty($errors)) {
-        // Hash password untuk keamanan
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT); //password_hash() → Mengenkripsi password agar aman
-        
-        // Set kelas_id null jika bukan murid
-        if ($peran != 'murid') {
+        // PERBAIKAN: Set kelas_id berdasarkan peran
+        if ($peran != 'siswa') {
+            // Untuk guru dan admin, set kelas_id menjadi NULL
             $kelas_id = null;
-        } // Jika bukan murid, kelas_id dibuat null
+        } else {
+            // Pastikan kelas_id adalah integer jika siswa
+            $kelas_id = !empty($kelas_id) ? (int)$kelas_id : null;
+        } // Jika bukan siswa, kelas_id dibuat NULL (atau kelas yang sudah ada)
         
-        // Insert data ke database dengan kelas_id
-        $stmt = $conn->prepare("INSERT INTO users (username, nama_lengkap, password, konfirm_password, peran, kelas_id) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssi", $username, $nama_lengkap, $hashed_password, $hashed_password, $peran, $kelas_id);
-        //bind_param("sssssi") → s=string, i=integer
+        // Insert data ke database
+        if ($peran == 'siswa') {
+            // Untuk siswa, sertakan kelas_id
+            $stmt = $conn->prepare("INSERT INTO users (username, nama_lengkap, password, konfirm_password, peran, kelas_id) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssssi", $username, $nama_lengkap, $password, $password, $peran, $kelas_id);
+            //bind_param("sssssi") → s=string, i=integer
+        } else {
+            // Untuk guru dan admin, kelas_id = NULL
+            $stmt = $conn->prepare("INSERT INTO users (username, nama_lengkap, password, konfirm_password, peran, kelas_id) VALUES (?, ?, ?, ?, ?, NULL)");
+            $stmt->bind_param("sssss", $username, $nama_lengkap, $password, $password, $peran);
+        }
         
         if ($stmt->execute()) {
-            $message = "Registrasi berhasil! Akun telah dibuat.";
+            $message = "Buat akun berhasil! Akun telah dibuat.";
             $nama_lengkap = $username = $password = $konfirm_password = $peran = $kelas_id = ''; //Jika berhasil → Set pesan sukses & reset form
         } else {
             $errors[] = "Error saat menyimpan data: " . $conn->error;
@@ -136,7 +143,7 @@ if ($result) {
 
     <div class="regis-right">
       <div class="logo-skejul">
-        <img src="assets/img/Skejul.png" alt="">
+        <img src="assets/img/SkeJul-color.png" alt="">
       </div>
       <div class="container-regis-right">
         <h2>Buat Akun</h2>
@@ -165,14 +172,14 @@ if ($result) {
                 <input type="text" name="username" id="username" placeholder="Masukkan nama pengguna" value="<?php echo isset($username) ? htmlspecialchars($username) : ''; ?>" required>
                 <select name="kategori" id="kategori" class="dropdown" onchange="toggleKelasDropdown()" required>
                   <option value="" disabled <?php echo (empty($peran)) ? 'selected' : ''; ?>>Kategori</option>
-                  <option value="murid" <?php echo (isset($peran) && $peran == 'murid') ? 'selected' : ''; ?>>Murid</option>
+                  <option value="siswa" <?php echo (isset($peran) && $peran == 'siswa') ? 'selected' : ''; ?>>Siswa</option>
                   <option value="guru" <?php echo (isset($peran) && $peran == 'guru') ? 'selected' : ''; ?>>Guru</option>
                   <option value="admin" <?php echo (isset($peran) && $peran == 'admin') ? 'selected' : ''; ?>>Admin</option>
                 </select>
               </div>
             </div>
             
-            <!-- Dropdown Kelas (hanya muncul jika peran = murid) -->
+            <!-- Dropdown Kelas (hanya muncul jika peran = siswa) -->
             <div class="label-input-regis" id="kelas-dropdown" style="display: none;">
               <label for="kelas_id">Kelas</label>
               <select name="kelas_id" id="kelas_id" class="dropdown">
@@ -186,10 +193,9 @@ if ($result) {
               </select>
             </div>
             
-            <!-- Ganti bagian password dan konfirm password di form Anda dengan struktur ini -->
             <div class="label-input-regis">
               <label for="password">Kata Sandi</label>
-              <input type="password" name="password" id="password" placeholder="Masukkan kata sandi"required>
+              <input type="password" name="password" id="password" placeholder="Masukkan kata sandi" required>
               <span class="password-check">
                 <img src="assets/img/Eye-close.svg" alt="Show password">
               </span>
