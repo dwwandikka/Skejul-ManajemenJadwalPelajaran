@@ -130,7 +130,7 @@ $result = $stmt->get_result();
       <div class="right-side">
         <div class="container-top">
           <div class="arrow-top">
-            <a href="siswa-dashboard.php">Dashboard</a>
+            <a href="guru-dashboard.php">Dashboard</a>
             <img src="assets/img/arrow-hari.svg" alt="Arrow" width="16px">
             <a href="guru-jadwalhari">Jadwal Hari Ini</a>
           </div>

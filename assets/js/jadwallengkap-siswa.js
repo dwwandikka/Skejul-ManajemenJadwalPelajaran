@@ -38,15 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// document.querySelector('.jadwal-hariini').addEventListener('mouseenter', function() {
-//   document.querySelector('.jadwal-lengkap').style.backgroundColor = 'white';
-//   document.querySelector('.jadwal-lengkap').style.color = 'black';
-// });
-
-// document.querySelector('.jadwal-hariini').addEventListener('mouseleave', function() {
-//   document.querySelector('.jadwal-lengkap').style.backgroundColor = '';  // Kembali ke default
-//   document.querySelector('.jadwal-lengkap').style.color = 'white';  // Kembali ke default
-// });
 
 document.addEventListener('DOMContentLoaded', function() {
   const wrapper = document.querySelector('.dropdown-hari-wrapper');
@@ -145,3 +136,10 @@ function hideLogoutModal() {
 function confirmLogout() {
   window.location.href = 'login.php';
 }
+
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const sidebar = document.querySelector('aside.sidebar');
+
+hamburgerBtn.addEventListener('click', () => {
+  sidebar.classList.toggle('active');
+});

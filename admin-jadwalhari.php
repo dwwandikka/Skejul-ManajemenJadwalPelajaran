@@ -80,7 +80,7 @@ $conn = mysqli_connect($host, $user, $pass, $db);
                         <img src="assets/img/profile-avatar.svg" alt="Foto Profil" class="profile-img">
                         <div class="profile-text">
                             <h1><?php echo $_SESSION['nama']; ?></h1>
-                            <p>Siswa Aktif</p>
+                            <p>Admin Aktif</p>
                         </div>
                     </div>
                 </div>

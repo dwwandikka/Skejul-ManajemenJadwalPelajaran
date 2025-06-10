@@ -620,6 +620,7 @@ nav ul li a {
   body {
     margin: 0;
     padding: 0;
+    height: 100vh;
   }
   .sidebar {
     transform: translateX(-100%);
@@ -642,7 +643,7 @@ nav ul li a {
   }
   .topbar {
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: end;
     padding: 10px;
     padding-left: 78%;
     border-radius: 0;
@@ -807,6 +808,7 @@ nav ul li a {
   .card-box-motivasi,
   .card-box-desc {
     width: 100%;
+    display: block;
   }
 
   .slogan-skensa .card-row {
@@ -841,6 +843,7 @@ nav ul li a {
   .ilustrasi-welcomee {
     display: none;
   }
+  
   #welcome-section {
     border-radius: 20px;
     height: 100px;
