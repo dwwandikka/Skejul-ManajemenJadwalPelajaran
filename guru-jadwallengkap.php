@@ -14,9 +14,9 @@ include 'db.php';
 
 $conn = mysqli_connect($host, $user, $pass, $db);
 
-if (isset($_GET['hari']) && isset($_SESSION['kelas_id'])) {
+if (isset($_GET['hari']) && isset($_SESSION['guru_id'])) {
     $hari = $_GET['hari'];
-    $kelas_id = $_SESSION['kelas_id'];
+    $guru_id = $_SESSION['guru_id'];
     $result = $conn->query("
         SELECT 
           jk.jam_mulai, 
@@ -28,18 +28,18 @@ if (isset($_GET['hari']) && isset($_SESSION['kelas_id'])) {
         JOIN mata_pelajaran mp ON jk.mapel_id = mp.mapel_id
         JOIN ruangan r ON jk.ruang_id = r.ruang_id
         JOIN guru g ON jk.guru_id = g.guru_id
-        WHERE jk.hari = '$hari' AND jk.kelas_id = '$kelas_id'
+        WHERE jk.hari = '$hari' AND jk.guru_id = '$guru_id'
     ");
-    if ($result && $result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr>
-                    <td>" . date('H:i', strtotime($row['jam_mulai'])) . "</td>
-                    <td>" . date('H:i', strtotime($row['jam_selesai'])) . "</td>
-                    <td>" . $row['mata_pelajaran'] . "</td>
-                    <td>" . $row['guru_pengajar'] . "</td>
-                    <td>" . $row['ruang'] . "</td>
-                  </tr>";
-        }
+    if (isset($_GET['hari']) && isset($_SESSION['guru_id'])) {
+    // ...
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>
+                <td>" . date('H:i', strtotime($row['jam_mulai'])) . "</td>
+                <td>" . date('H:i', strtotime($row['jam_selesai'])) . "</td>
+                <td>" . $row['mata_pelajaran'] . "</td>
+                <td>" . $row['ruang'] . "</td>
+              </tr>";
+    }
     } else {
         echo "<tr><td colspan='5'>Tidak ada data jadwal</td></tr>";
     }
@@ -113,7 +113,7 @@ if (isset($_GET['hari']) && isset($_SESSION['kelas_id'])) {
             <img src="assets/img/profile-avatar.svg" alt="Foto Profil" class="profile-img">
             <div class="profile-text">
               <h1><?php echo $_SESSION['nama']; ?></h1>
-              <p>Siswa Aktif</p>
+              <p>Guru Aktif</p>
             </div>
           </div>
         </div>
