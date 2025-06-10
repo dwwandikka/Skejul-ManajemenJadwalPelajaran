@@ -14,6 +14,34 @@ include 'db.php';
 
 $conn = mysqli_connect($host, $user, $pass, $db);
 
+<<<<<<< HEAD
+if (isset($_GET['hari']) && isset($_SESSION['guru_id'])) {
+    $hari = $_GET['hari'];
+    $guru_id = $_SESSION['guru_id'];
+    $result = $conn->query("
+        SELECT 
+          jk.jam_mulai, 
+          jk.jam_selesai, 
+          mp.nama_mapel AS mata_pelajaran,
+          g.nama_guru AS guru_pengajar,
+          r.nama_ruang AS ruang
+        FROM jadwal_kelas jk
+        JOIN mata_pelajaran mp ON jk.mapel_id = mp.mapel_id
+        JOIN ruangan r ON jk.ruang_id = r.ruang_id
+        JOIN guru g ON jk.guru_id = g.guru_id
+        WHERE jk.hari = '$hari' AND jk.guru_id = '$guru_id'
+    ");
+    if (isset($_GET['hari']) && isset($_SESSION['guru_id'])) {
+    // ...
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>
+                <td>" . date('H:i', strtotime($row['jam_mulai'])) . "</td>
+                <td>" . date('H:i', strtotime($row['jam_selesai'])) . "</td>
+                <td>" . $row['mata_pelajaran'] . "</td>
+                <td>" . $row['ruang'] . "</td>
+              </tr>";
+    }
+=======
 // Cek apakah ini adalah permintaan AJAX dengan parameter `hari`
 if (isset($_GET['hari'])) {
     $hari = $_GET['hari'];
@@ -46,6 +74,7 @@ if (isset($_GET['hari'])) {
                     <td>" . $row['ruang'] . "</td>
                   </tr>";
         }
+>>>>>>> c803a4135f3d0ec1d959f6003ce059a73d5f6419
     } else {
         echo "<tr><td colspan='5'>Tidak ada data jadwal</td></tr>";
     }
