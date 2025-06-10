@@ -47,6 +47,9 @@ if (isset($_GET['hari']) && isset($_SESSION['kelas_id'])) {
 }
 ?>
   <header class="topbar">
+    <button id="hamburgerBtn" aria-label="Menu">
+      <img src="assets/img/List-black.svg" alt="Menu">
+    </button>
     <div class="topbar-left">
       <img src="assets/img/logo-smk.png" alt="Logo SMK" class="logo-smk" />
       <span class="school-name">SMK NEGERI 1 DENPASAR</span>

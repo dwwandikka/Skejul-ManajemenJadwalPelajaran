@@ -454,6 +454,8 @@ tbody tr:nth-child(even) {
   transition: background 0.3s;
 }
 
+
+
 .dropdown-menu-hari a.hari-item:hover {
   background-color: #2563eb;
   color: white;
@@ -464,4 +466,154 @@ tbody tr:nth-child(even) {
 }
 .show-hari {
   display: block;
+}
+
+@media (max-width: 600px) {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  .container-all {
+    flex-direction: column;
+    padding: 0;
+  }
+  .topbar {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 1rem;
+    border-radius: 0;
+    margin-top: 0;
+  }
+  .topbar-left {
+    padding-left: 0;
+  }
+  .school-name {
+    font-size: 0.8rem;
+    padding-left: 0.5rem;
+    display: none;
+  }
+  .logo-smk, .logo-kanan {
+    width: 2rem;
+    height: 2rem;
+  }
+  .sidebar {
+    position: fixed;
+    left: -100%;
+    top: 0;
+    width: 250px;
+    height: 100vh;
+    z-index: 1000;
+    background: linear-gradient(9.242deg, #0959ff 0%, #0674ff 38%, #00b1ff 70%, #8bdbff 100%);
+    transition: left 0.3s;
+    border-radius: 0 1.25rem 1.25rem 0;
+    margin-top: 0;
+  }
+  .sidebar.active {
+    left: 0;
+  }
+  .logo-skejul {
+    margin-left: 1rem;
+    margin-top: 1rem;
+  }
+  nav ul {
+    padding-left: 1rem;
+    margin-top: 2rem;
+  }
+  .beranda, .jadwal, .logout {
+    padding: 10px 1rem;
+    font-size: 0.95rem;
+  }
+  .info-box {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+  .ilustrasi-sitebar {
+    width: 80px;
+    height: auto;
+  }
+  .profile-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  .profile-img {
+    width: 40px;
+    height: 40px;
+  }
+  .profile-text h1 {
+    font-size: 1rem;
+  }
+  .profile-text p {
+    font-size: 0.9rem;
+  }
+  .container-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    width: 100%;
+  }
+  .arrow-top {
+    font-size: 0.95rem;
+    gap: 0.3rem;
+  }
+  .jadwal-container h1 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .dropdown {
+    width: 100%;
+    min-width: unset;
+    margin-bottom: 1rem;
+  }
+  .dropdown-toggle {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px 1rem;
+  }
+  .dropdown-menu {
+    width: 83vw;
+    left: -1rem;
+    border-radius: 0 0 10px 10px;
+    font-size: 0.98rem;
+    min-width: unset;
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+  .dropdown-label, .dropdown-item {
+    font-size: 0.98rem;
+    padding: 10px 1rem;
+  }
+  .jadwal-container {
+    overflow-x: auto;
+    width: 100%;
+    padding: 0;
+  }
+  table {
+    width: 100%;
+    min-width: 600px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 0.95rem;
+  }
+  th, td {
+    padding: 10px;
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+}
+
+/* Hamburger button for sidebar toggle (if needed) */
+#hamburgerBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-right: 10px;
+  display: inline-block;
+}
+@media (max-width: 600px) {
+  #hamburgerBtn {
+    display: inline-block;
+  }
 }

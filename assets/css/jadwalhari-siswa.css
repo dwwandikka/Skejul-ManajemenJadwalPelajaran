@@ -323,4 +323,271 @@ tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
+@media (max-width: 400px) {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 250px;
+    background-color: #1e1e2f; /* Atur sesuai tema */
+    z-index: 1000;
+  }
+
+  .container-top{
+    margin-top: 1rem;
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+  .skejul-blue {
+    padding-left: 10%;
+    padding-top: 20px;
+  }
+  .topbar {
+    flex-direction: row;
+    justify-content: end;
+    padding: 10px;
+    padding-left: 78%;
+    border-radius: 0;
+  }
+  .gradient-line-bawah {
+    background: linear-gradient(90deg, #0959ff 0%, #00b1ff 56%, #d3f1ff 100%);
+    height: 30px;
+    border-radius: 30px;
+    display: none;
+  }
+  #hamburgerBtn img {
+    justify-content: flex-start;
+  }
+  .topbar-left {
+    padding-left: 0;
+  }
+  .date-card {
+    width: 260px;
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    z-index: 10;
+    margin: 8px 16px;
+    height: 26%;
+
+    /* Efek blur kaca */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    /* Border putih tipis */
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+  .school-name {
+    display: none;
+    font-size: 12px;
+    padding-left: 8px;
+  }
+  .text-welcome p {
+    margin: 0;
+    font-weight: 600;
+    margin-top: 30px;
+  }
+  .logo-smk {
+    display: none;
+    width: 35px;
+    height: 35px;
+  }
+
+  .logo-kanan {
+    display: none;
+    width: 35px;
+    height: 35px;
+    padding-left: 0px;
+  }
+
+  .hamburger {
+    width: 24px;
+    height: 24px;
+  }
+  .card-box-desc p {
+    font-weight: 500;
+    font-size: 15px;
+    padding-left: 5%;
+  }
+  .container-all {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .right-side{
+    width: 100%;
+    margin-left: 0;
+  }
+
+  aside.sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 250px;
+    height: 100%;
+    z-index: 999;
+    transition: left 0.3s ease-in-out;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  aside.sidebar.active {
+    left: 0;
+  }
+  .card-box-desc strong {
+    color: #0959ff;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 5%;
+  }
+  .c .logo {
+    margin-left: 20px;
+  }
+  .logo {
+    margin-top: 10%;
+    margin-bottom: 40%;
+  }
+
+  .logo-skejul {
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+
+  nav ul {
+    padding-left: 20px;
+    margin-top: 30px;
+  }
+
+  .beranda,
+  .jadwal,
+  .logout {
+    padding: 10px 20px;
+  }
+
+  .info-box {
+    font-size: 12px;
+  }
+
+  .ilustrasi-sitebar {
+    width: 100px;
+    height: auto;
+  }
+
+  #dashboard-layout {
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .left-column,
+  .right-column {
+    width: 100%;
+  }
+
+  .card-box {
+    padding: 15px;
+  }
+
+  .profile-box {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    display: none;
+  }
+
+  .profile-img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .profile-text h1 {
+    font-size: 16px;
+  }
+
+  .card-box-tanggal,
+  .card-box-motivasi,
+  .card-box-desc {
+    width: 100%;
+  }
+
+  .slogan-skensa .card-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .slogan-skensa .card {
+    width: 90%;
+    margin-left: 20px;
+    margin-top: 15px;
+  }
+
+  .img-desc-skejul {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    display: none;
+  }
+
+  .emoji img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .dropdown-list {
+    position: static;
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .ilustrasi-welcomee {
+    display: none;
+  }
+  #welcome-section {
+    border-radius: 20px;
+    height: 100px;
+    background: linear-gradient(37.93deg, #0959ff 0%, #00b1ff 55%, #d3e0ff 90%);
+    width: 102%;
+  }
+
+  /* Hamburger toggle */
+  #hamburgerBtn {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-right: 10px;
+  }
+
+    .jadwal-container {
+    overflow-x: auto;
+    width: 100%;
+  }
+  table {
+    width: 100%;
+    min-width: 600px; /* atau sesuai kebutuhan kolom */
+    border-radius: 8px;
+    overflow-x: auto;
+    /* Hapus display: block, biarkan default table */
+  }
+  th, td {
+    padding: 10px;
+    font-size: 0.95rem;
+    /* Hapus display: block, biarkan default table */
+  }
+}
+
+
 

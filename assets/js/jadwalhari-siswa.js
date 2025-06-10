@@ -35,15 +35,11 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// document.querySelector('.jadwal-lengkap').addEventListener('mouseenter', function() {
-//   document.querySelector('.jadwal-hariini').style.backgroundColor = 'white';
-//   document.querySelector('.jadwal-hariini').style.color = 'black';
-// });
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const sidebar = document.querySelector('aside.sidebar');
 
-// document.querySelector('.jadwal-lengkap').addEventListener('mouseleave', function() {
-//   document.querySelector('.jadwal-hariini').style.backgroundColor = '#0959ff';  // Kembali ke default
-//   document.querySelector('.jadwal-hariini').style.color = 'white';  // Kembali ke default
-// });
-
+hamburgerBtn.addEventListener('click', () => {
+  sidebar.classList.toggle('active');
+});
 
 

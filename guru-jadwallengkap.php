@@ -116,10 +116,19 @@ if (isset($_GET['hari'])) {
           </p>
         </div>
 
-        <a href="login.php" class="logout">
-          <img src="assets/img/out-white.svg" alt="">
+        <a href="#" class="logout" id="logout-btn" onclick="showLogoutModal(event)">
+          <img src="assets/img/icon-logout-white.svg" alt="">
           <span class="text-keluar">Keluar</span>
         </a>
+
+        <!-- Logout Confirmation Modal -->
+        <div id="logout-modal" class="modal" style="display:none;">
+          <div class="modal-content">
+            <p>Apakah Anda yakin ingin keluar?</p>
+            <button id="confirm-logout" class="btn-logout" onclick="confirmLogout()">Ya, Keluar</button>
+            <button id="cancel-logout" class="btn-cancel" onclick="hideLogoutModal()">Batal</button>
+          </div>
+        </div>
       </aside>
 
       <div class="right-side">

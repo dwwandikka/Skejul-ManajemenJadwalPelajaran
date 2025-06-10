@@ -19,6 +19,9 @@
         ?>
         <!-- Header -->
         <header class="topbar">
+            <button id="hamburgerBtn" aria-label="Menu">
+                <img src="assets/img/List-black.svg" alt="Menu">
+            </button>
             <div class="topbar-left">
                 <img src="assets/img/logo-smk.png" alt="Logo SMK" class="logo-smk" />
                 <span class="school-name">SMK NEGERI 1 DENPASAR</span>
@@ -51,11 +54,11 @@
 
                             </li>
                             <li class="dropdown-tambah-akun">
-                                <a href="tambah-akun-admin.php" class="jadwal">
+                                <a href="register.php" class="jadwal">
 
                                     <!-- Icon Jadwal -->
                                     <img class="jadwal-icon" src="assets/img/jadwal-icon-white.svg" alt="">
-                                    <span class="text-jadwal">Tambah</span>
+                                    <span class="text-jadwal">Tambah Akun</span>
                                 </a>
 
                             </li>
@@ -66,10 +69,19 @@
                         <img src="assets/img/ilustrasi-sitebar.png" alt="Ilustrasi Jadwal" class="ilustrasi-sitebar" />
                         <p>Lihat dan kelola jadwal pelajaran <br /> mudah dengan SkeJul</p>
                     </div>
-                    <a href="#" class="logout">
-                        <img src="assets/img/icon-logout-white.svg" alt="">
-                        <span class="text-keluar">Keluar</span>
-                    </a>
+                    <a href="#" class="logout" id="logout-btn" onclick="showLogoutModal(event)">
+          <img src="assets/img/icon-logout-white.svg" alt="">
+          <span class="text-keluar">Keluar</span>
+        </a>
+
+        <!-- Logout Confirmation Modal -->
+        <div id="logout-modal" class="modal" style="display:none;">
+          <div class="modal-content">
+            <p>Apakah Anda yakin ingin keluar?</p>
+            <button id="confirm-logout" class="btn-logout" onclick="confirmLogout()">Ya, Keluar</button>
+            <button id="cancel-logout" class="btn-cancel" onclick="hideLogoutModal()">Batal</button>
+          </div>
+        </div>
                 </aside>
             </div>
             <!-- Dashboard Layout -->
@@ -155,7 +167,7 @@
                     <img src="assets/img/profile-avatar.svg" alt="Foto Profil" class="profile-img">
                     <div class="profile-text">
                         <h1><?php echo $_SESSION['nama']; ?></h1>
-                        <p>Siswa Aktif</p>
+                        <p>Admin Aktif</p>
                     </div>
                 </div>
                 <div class="card-box-tanggal">

@@ -53,6 +53,7 @@
     ?>
 
     <header class="topbar">
+        
         <div class="topbar-left">
             <img src="assets/img/logo-smk.png" alt="Logo SMK" class="logo-smk" />
             <span class="school-name">SMK NEGERI 1 DENPASAR</span>
@@ -117,8 +118,8 @@
                     <div class="profile-box">
                         <img src="assets/img/profile-avatar.svg" alt="Foto Profil" class="profile-img">
                         <div class="profile-text">
-                            <h1>Kadek Yudhi Satria</h1>
-                            <p>Siswa Aktif</p>
+                            <h1><?php echo $_SESSION['nama']; ?></h1>
+                            <p>Admin Aktif</p>
                         </div>
                     </div>
                 </div>
@@ -243,8 +244,8 @@
                 <div class="modal" id="confirmModal">
                     <div class="modal-content">
                         <p>Apakah Anda yakin ingin menghapus jadwal ini?</p>
-                        <button onclick="closeConfirm()">Batal</button>
-                        <button onclick="deleteRow()">Lanjutkan</button>
+                        <button class="batal" onclick="closeConfirm()">Batal</button>
+                        <button class="lanjut" onclick="deleteRow()">Lanjutkan</button>
                     </div>
                 </div>
 

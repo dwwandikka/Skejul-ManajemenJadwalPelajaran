@@ -14,6 +14,7 @@ function toggleDropdown() {
       menu.classList.remove("show");
     }
   });
+  
   function toggleHariDropdown() {
     const dropdown = document.getElementById("hari-dropdown");
     dropdown.classList.toggle("show-hari");

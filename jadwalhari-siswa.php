@@ -52,6 +52,9 @@ $sql = "SELECT
 $result = $conn->query($sql);
 ?>
   <header class="topbar">
+    <button id="hamburgerBtn" aria-label="Menu">
+      <img src="assets/img/List-black.svg" alt="Menu">
+    </button>
     <div class="topbar-left">
       <img src="assets/img/logo-smk.png" alt="Logo SMK" class="logo-smk" />
       <span class="school-name">SMK NEGERI 1 DENPASAR</span>
@@ -63,12 +66,8 @@ $result = $conn->query($sql);
     <div class="container">
       <aside class="sidebar">
         <div class="logo">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="20" viewBox="0 0 22 20" fill="none">
-            <rect width="22" height="3.83555" rx="1.91777" fill="white" />
-            <rect y="7.6711" width="22" height="3.83555" rx="1.91777" fill="white" />
-            <rect y="15.3422" width="10.3529" height="3.83555" rx="1.91777" fill="white" />
-          </svg>
-          <img src="assets/img/SkeJul.png" alt="Logo SkeJul" class="logo-skejul" />
+          <img src="assets/img/List.svg" alt="">
+          <img src="assets/img/SkeJul-white.svg" alt="" class="logo-skejul" />
         </div>
 
         <nav>
