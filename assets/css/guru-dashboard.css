@@ -388,7 +388,7 @@ nav ul li a {
 .img-desc-skejul {
   position: absolute;
   width: 16%;
-  margin-top: 31%;
+  margin-top: 23%;
   margin-right: 5%;
 }
 .card-box-desc {
@@ -447,7 +447,7 @@ nav ul li a {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   position: absolute;
   z-index: 10;
-  margin: 16px;
+  margin: 8px 16px;
   height: 30%;
 
   /* Efek blur kaca */
@@ -573,8 +573,8 @@ nav ul li a {
 }
 .ilustrasi-motivasi {
   position: absolute;
-  width: 7%;
-  margin-left: 13%;
+  width: 6%;
+  margin-left: 11%;
   margin-top: 3%;
 }
 .card-box-motivasi p {
@@ -599,3 +599,67 @@ nav ul li a {
   margin-top: 20px;
   width: 260px;
 }
+
+/* Modal Overlay */
+
+.modal {
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Tambahkan ini agar modal tetap di tengah saat di-scroll */
+  inset: 0;
+}
+
+/* Modal Content */
+.modal-content {
+  background: #fff;
+  padding: 32px 24px 24px 24px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  text-align: center;
+  width: 18.75rem;
+}
+
+.modal-content p {
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+  color: #222;
+}
+
+/* Buttons */
+.btn-logout, .btn-cancel {
+  padding: 10px 28px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin: 0 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-logout {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.btn-logout:hover {
+  background: #c0392b;
+}
+
+.btn-cancel {
+  background: #f1f1f1;
+  color: #333;
+}
+
+.btn-cancel:hover {
+  background: #ddd;
+}
+

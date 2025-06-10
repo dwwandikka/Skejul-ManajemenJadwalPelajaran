@@ -16,37 +16,29 @@
 
     $conn = mysqli_connect($host, $user, $pass, $db);
 
-    // Handler AJAX untuk tambah atau update jadwal
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+    // Handler AJAX untuk tambah jadwal
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'tambah') {
         $jamMulai = $_POST['jamMulai'];
         $jamSelesai = $_POST['jamSelesai'];
         $mapel = $_POST['mapel'];
         $guru = $_POST['guru'];
         $ruang = $_POST['ruang'];
-        $hari = $_POST['hari'] ?? '';
-        $kelas_id = $_POST['kelas_id'] ?? null;
-    
-        if ($_POST['action'] === 'tambah') {
-            $sql = "INSERT INTO jadwal_kelas (jam_mulai, jam_selesai, mapel_id, guru_id, ruang_id, hari, kelas_id)
-                VALUES (?, ?, ?, ?, ?, ?, ?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ssssssi", $jamMulai, $jamSelesai, $mapel, $guru, $ruang, $hari, $kelas_id);
-        } elseif ($_POST['action'] === 'update' && !empty($_POST['jadwal_id'])) {
-            $jadwal_id = intval($_POST['jadwal_id']);
-            $sql = "UPDATE jadwal_kelas 
-        SET jam_mulai = ?, jam_selesai = ?, mapel_id = ?, guru_id = ?, ruang_id = ?, hari = ?, kelas_id = ?
-        WHERE jadwal_id = ?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ssssssii", $jamMulai, $jamSelesai, $mapel, $guru, $ruang, $hari, $kelas_id, $jadwal_id);
-        } else {
-            echo 'error: Invalid action';
-            exit;
-        }
-    
+        $hari = $_POST['hari'] ?? ''; // Ambil dari dropdown form
+        $kelas_id = $_POST['kelas_id'] ?? null; // Ambil dari POST
+
+        // Contoh query insert (pastikan nama tabel dan kolom sesuai database kamu)
+        $sql = "INSERT INTO jadwal_kelas (jam_mulai, jam_selesai, mapel_id, guru_id, ruang_id, hari, kelas_id)
+            VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        // Ambil id mapel, guru, ruang dari nama (atau sesuaikan dengan struktur DB kamu)
+        // Untuk contoh, langsung masukkan string (jika id, lakukan query select id dulu)
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssssssi", $jamMulai, $jamSelesai, $mapel, $guru, $ruang, $hari, $kelas_id);
+
         if ($stmt->execute()) {
             echo 'success';
         } else {
-            echo 'error: ' . $stmt->error;
+            echo 'error: ' . $stmt->error; // Tampilkan error detail
         }
         exit;
     }
@@ -90,6 +82,15 @@
 
                             </ul>
                         </li>
+                        <li class="dropdown-tambah-akun">
+                            <a href="tambah-akun-admin.php" class="jadwal">
+
+                                <!-- Icon Jadwal -->
+                                <img class="jadwal-icon" src="assets/img/jadwal-icon-white.svg" alt="">
+                                <span class="text-jadwal">Tambah</span>
+                            </a>
+
+                        </li>
                     </ul>
                 </nav>
 
@@ -117,7 +118,7 @@
                     <div class="profile-box">
                         <img src="assets/img/profile-avatar.svg" alt="Foto Profil" class="profile-img">
                         <div class="profile-text">
-                            <h1>Kadek Yudhi Satria</h1>
+                            <h1><?php echo $_SESSION['nama']; ?></h1>
                             <p>Siswa Aktif</p>
                         </div>
                     </div>
@@ -136,7 +137,7 @@
                                 <th>JAM MULAI</th>
                                 <th>JAM SELESAI</th>
                                 <th>MATA PELAJARAN</th>
-                                <th>GURU PENGAJAR</th>
+                                <th>Kelas</th>
                                 <th>RUANG</th>
                                 <th>AKSI</th>
                             </tr>
@@ -144,13 +145,14 @@
                         <tbody id="jadwalBody">
                             <?php
                             // Ambil data jadwal dari database
-                            $jadwalList = $conn->query("SELECT j.jadwal_id, j.hari, j.jam_mulai, j.jam_selesai, m.nama_mapel, g.nama_guru, r.nama_ruang, j.mapel_id, j.guru_id, j.ruang_id 
+                            // Kode sebelumnya hanya menampilkan jadwal untuk kelas_id 3030
+                            // Jika ingin menampilkan semua jadwal, hapus WHERE j.kelas_id = ...
+                            $jadwalList = $conn->query("SELECT j.jadwal_id, j.hari, j.jam_mulai, j.jam_selesai, m.nama_mapel, m.mapel_id, g.nama_guru, g.guru_id, r.nama_ruang, r.ruang_id, k.nama_kelas, k.kelas_id
                             FROM jadwal_kelas j
                             JOIN mata_pelajaran m ON j.mapel_id = m.mapel_id
                             JOIN guru g ON j.guru_id = g.guru_id
                             JOIN ruangan r ON j.ruang_id = r.ruang_id
-                            WHERE j.kelas_id = 3030"); // Sesuaikan kelas_id dengan kebutuhan
-
+                            JOIN kelas k ON j.kelas_id = k.kelas_id");
                             // Tampilkan data jadwal
                             while ($row = $jadwalList->fetch_assoc()):
                             ?>
@@ -158,7 +160,7 @@
                                 <td><?= date('H:i', strtotime($row['jam_mulai'])) ?></td>
                                 <td><?= date('H:i', strtotime($row['jam_selesai'])) ?></td>
                                 <td data-mapel-id="<?= $row['mapel_id'] ?>"><?= htmlspecialchars($row['nama_mapel']) ?></td>
-                                <td data-guru-id="<?= $row['guru_id'] ?>"><?= htmlspecialchars($row['nama_guru']) ?></td>
+                                <td data-guru-id="<?= $row['guru_id'] ?>"><?= htmlspecialchars($row['nama_kelas']) ?></td>
                                 <td data-ruang-id="<?= $row['ruang_id'] ?>"><?= htmlspecialchars($row['nama_ruang']) ?></td>
                                 <td>
                                     <img src="assets/img/edit.svg" class="icon" onclick="editRow(this)">
@@ -179,7 +181,9 @@
                         $mapelList = $conn->query("SELECT mapel_id, nama_mapel FROM mata_pelajaran");
                         $guruList = $conn->query("SELECT guru_id, nama_guru FROM guru");
                         $ruangList = $conn->query("SELECT ruang_id, nama_ruang FROM ruangan");
+                        $kelasList = $conn->query("SELECT kelas_id, nama_kelas FROM kelas");
                         ?>
+                        
                         <form method="POST" id="jadwalForm">
                             <div class="input-jadwal">
                                 <label for="jamMulai">Jam Mulai</label>
@@ -210,10 +214,19 @@
                                     <?php endwhile; ?>
                                 </select>
                             </div>
-                            <div class="input-jadwal">
-                                <label for="guru">Guru Pengajar</label>
+            <div class="input-jadwal">
+                            <label for="kelas">Kelas</label>
+                            <select id="kelas" name="kelas_id" required>
+                                <option value="">Pilih Kelas</option>
+                                <?php while ($row = $kelasList->fetch_assoc()): ?>
+                                    <option value="<?= $row['kelas_id'] ?>"><?= htmlspecialchars($row['nama_kelas']) ?></option>
+                                <?php endwhile; ?>
+                            </select>
+                        </div>
+                                        <div class="input-jadwal">
+                                            <label for="guru">Guru Pengajar</label>
                                 <select id="guru" name="guru" required>
-                                    <option value="" >Pilih Guru</option>
+                                    <option value="">Pilih Guru</option>
                                     <?php while ($row = $guruList->fetch_assoc()): ?>
                                         <option value="<?= $row['guru_id'] ?>"><?= htmlspecialchars($row['nama_guru']) ?></option>
                                     <?php endwhile; ?>
@@ -221,18 +234,16 @@
                             </div>
                             <div class="input-jadwal">
                                 <label for="ruang">Ruang</label>
-                                <select id="ruang" name="ruang" required>
-                                    <option value="">Pilih Ruang</option>
-                                    <?php while ($row = $ruangList->fetch_assoc()): ?>
-                                        <option value="<?= $row['ruang_id'] ?>"><?= htmlspecialchars($row['nama_ruang']) ?></option>
-                                    <?php endwhile; ?>
-                                </select>
-                                <input type="hidden" name="kelas_id" value="3030">
-                            </div>
+                            <select id="ruang" name="ruang" required>
+                                                                <option value="">Pilih Ruang</option>
+                                                                <?php while ($row = $ruangList->fetch_assoc()): ?>
+                                                                    <option value="<?= $row['ruang_id'] ?>"><?= htmlspecialchars($row['nama_ruang']) ?></option>
+                                                                <?php endwhile; ?>
+                                                            </select>
+                                                        </div>
                             <div class="button-batal-tambah">
                                 <button type="button" id="closeBtn" onclick="closeForm()">Batal</button>
                                 <button type="submit" id="submitBtn">Tambah</button>
-                                <input type="hidden" id="jadwal_id" name="jadwal_id">
                             </div>
                         </form>
                     </div>
@@ -255,7 +266,7 @@
                     </div>
                 </div>
 
-                <script src="assets/js/admin-xirpl1.js"></script>
+                <script src="assets/js/admin-guru.js"></script>
 </body>
 
 </html>

@@ -3,8 +3,8 @@ session_start();
 
 // Cek apakah user sudah login dan memiliki role siswa
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'siswa') {
-    header("Location: login.php");
-    exit();
+  header("Location: login.php");
+  exit();
 }
 
 // Ambil data dari session
@@ -12,22 +12,25 @@ $nama_siswa = $_SESSION['nama'] ?? 'Nama Siswa';
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard - Siswa</title>
   <link rel="stylesheet" href="assets/css/dashboard-siswa.css" />
 </head>
+
 <body>
   <!-- Header -->
   <header class="topbar">
-      <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
-        <img class="hamburger" src="assets/img/List.svg" alt="Menu">
-        </button>
+    <button id="hamburgerBtn" aria-label="Menu">
+      <img src="assets/img/List-black.svg" alt="Menu">
+    </button>
+
     <div class="topbar-left">
       <img src="assets/img/logo-smk.png" alt="Logo SMK" class="logo-smk" />
       <span class="school-name">SMK NEGERI 1 DENPASAR</span>
-    </div> 
+    </div>
     <img src="assets/img/logo-smk-hebat.svg" alt="Logo SMK Bisa" class="logo-kanan" />
   </header>
   <div class="container-all">
@@ -63,7 +66,7 @@ $nama_siswa = $_SESSION['nama'] ?? 'Nama Siswa';
         </nav>
         <div class="info-box">
           <img src="assets/img/ilustrasi-sitebar.png" alt="Ilustrasi Jadwal" class="ilustrasi-sitebar" />
-          <p>Lihat dan kelola jadwal pelajaran <br/> mudah dengan SkeJul</p>
+          <p>Lihat dan kelola jadwal pelajaran <br /> mudah dengan SkeJul</p>
         </div>
         <a href="logout.php" class="logout">
           <img src="assets/img/icon-logout-white.svg" alt="">
@@ -147,7 +150,7 @@ $nama_siswa = $_SESSION['nama'] ?? 'Nama Siswa';
           </div>
         </div>
       </div>
-  <!-- Kolom Kanan -->
+      <!-- Kolom Kanan -->
     </div>
     <div class="right-column">
       <div class="profile-box">
@@ -168,27 +171,27 @@ $nama_siswa = $_SESSION['nama'] ?? 'Nama Siswa';
 
             // Array hari dan bulan Indonesia
             $hariIndo = [
-                'Sunday'    => 'Minggu',
-                'Monday'    => 'Senin',
-                'Tuesday'   => 'Selasa',
-                'Wednesday' => 'Rabu',
-                'Thursday'  => 'Kamis',
-                'Friday'    => 'Jumat',
-                'Saturday'  => 'Sabtu'
+              'Sunday'    => 'Minggu',
+              'Monday'    => 'Senin',
+              'Tuesday'   => 'Selasa',
+              'Wednesday' => 'Rabu',
+              'Thursday'  => 'Kamis',
+              'Friday'    => 'Jumat',
+              'Saturday'  => 'Sabtu'
             ];
             $bulanIndo = [
-                'January'   => 'Januari',
-                'February'  => 'Februari',
-                'March'     => 'Maret',
-                'April'     => 'April',
-                'May'       => 'Mei',
-                'June'      => 'Juni',
-                'July'      => 'Juli',
-                'August'    => 'Agustus',
-                'September' => 'September',
-                'October'   => 'Oktober',
-                'November'  => 'November',
-                'December'  => 'Desember'
+              'January'   => 'Januari',
+              'February'  => 'Februari',
+              'March'     => 'Maret',
+              'April'     => 'April',
+              'May'       => 'Mei',
+              'June'      => 'Juni',
+              'July'      => 'Juli',
+              'August'    => 'Agustus',
+              'September' => 'September',
+              'October'   => 'Oktober',
+              'November'  => 'November',
+              'December'  => 'Desember'
             ];
 
             $hariIni = $hariIndo[date('l')];
@@ -221,4 +224,5 @@ $nama_siswa = $_SESSION['nama'] ?? 'Nama Siswa';
 
   <script src="assets/js/siswa-dashboard.js"></script>
 </body>
+
 </html>

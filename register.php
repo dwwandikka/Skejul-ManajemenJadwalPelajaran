@@ -136,7 +136,7 @@ if ($result) {
       <div class="regis-container-left">
         <h1>Selamat Datang, Admin!</h1>
         <h2>Membuat akun SkeJul untuk <br> pengguna dengan mudah</h2>
-        <img src="assets/img/Sidebar-dashboard.png" alt="" width="400">
+        <img src="assets/img/Sidebar-dashboard(1).svg" alt="" width="400">
         <p>Cara paling mudah buat cek <br> jadwal kamu setiap hari</p>
       </div>
     </div> 

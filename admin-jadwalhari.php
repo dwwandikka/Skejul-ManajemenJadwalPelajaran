@@ -9,6 +9,15 @@
 </head>
 
 <body>
+
+<?php
+session_start();
+include 'db.php';
+
+$conn = mysqli_connect($host, $user, $pass, $db);
+
+?>
+
     <header class="topbar">
         <div class="topbar-left">
             <img src="assets/img/logo-smk.png" alt="Logo SMK" class="logo-smk" />
@@ -41,12 +50,7 @@
                             <a href="#" class="jadwal">
                                 <img class="jadwal-icon" src="assets/img/jadwal-icon-blue.svg" alt="Jadwal Icon">
                                 <span class="text-jadwal">Jadwal</span>
-                                <img class="arrow-icon" src="assets/img/arrow-black.svg" alt="Arrow Icon">
                             </a>
-                            <ul class="dropdown-list">
-                                <li><a href="#">Jadwal Hari Ini</a></li>
-                                <li><a href="#">Jadwal Lengkap</a></li>
-                            </ul>
                         </li>
                     </ul>
                 </nav>
@@ -75,7 +79,7 @@
                     <div class="profile-box">
                         <img src="assets/img/profile-avatar.svg" alt="Foto Profil" class="profile-img">
                         <div class="profile-text">
-                            <h1>Kadek Yudhi Satria</h1>
+                            <h1><?php echo $_SESSION['nama']; ?></h1>
                             <p>Siswa Aktif</p>
                         </div>
                     </div>

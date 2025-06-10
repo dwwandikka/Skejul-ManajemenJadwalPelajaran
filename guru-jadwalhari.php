@@ -9,51 +9,59 @@
 <body>
 
 <?php
-session_start();
+session_start(); // Start the session
+
 include 'db.php';
-
-if (!isset($host, $user, $pass, $db)) {
-    die("Database connection variables are not set. Please check db.php.");
+// Ambil daftar nama kelas dari tabel kelas
+$kelas_nama = [];
+$kelas_query = $conn->query("SELECT kelas_id, nama_kelas FROM kelas");
+while ($k = $kelas_query->fetch_assoc()) {
+  $kelas_nama[$k['kelas_id']] = $k['nama_kelas'];
 }
 
-$conn = mysqli_connect($host, $user, $pass, $db);
-
-if (mysqli_connect_errno()) {
-    die("Connection failed: " . mysqli_connect_error());
+$guru_id = $_SESSION['guru_id'];
+function convertDayToIndonesian($day) {
+    $days = [
+        'Monday' => 'Senin',
+        'Tuesday' => 'Selasa',
+        'Wednesday' => 'Rabu',
+        'Thursday' => 'Kamis',
+        'Friday' => 'Jumat',
+        'Saturday' => 'Sabtu',
+        'Sunday' => 'Minggu'
+    ];
+    return $days[$day] ?? $day;
 }
 
-$items_per_page = 5;
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$start_index = ($page - 1) * $items_per_page;
+$hariIni = convertDayToIndonesian(date('l')); // Konversi nama hari
+
 
 $sql = "SELECT 
-      jk.jadwal_id, 
-      jk.kelas_id, 
-      mp.nama_mapel,
-      r.nama_ruang,
-      g.nama_guru,
-      jk.guru_id, 
-      jk.hari, 
-      jk.jam_mulai, 
-      jk.jam_selesai, 
-      jk.ruang_id, 
-      jk.guru_id
-    FROM jadwal_kelas jk
-    JOIN mata_pelajaran mp ON jk.mapel_id = mp.mapel_id
-    JOIN ruangan r ON jk.ruang_id = r.ruang_id
-    JOIN guru g ON jk.guru_id = g.guru_id
-    LIMIT $start_index, $items_per_page";
-$result = $conn->query($sql);
-if (!$result) {
-  die("Query failed: " . $conn->error);
-}
+          jk.jadwal_id, 
+          jk.kelas_id, 
+          k.nama_kelas,
+          mp.nama_mapel,
+          r.nama_ruang,
+          g.nama_guru,
+          jk.guru_id, 
+          jk.hari, 
+          jk.jam_mulai, 
+          jk.jam_selesai, 
+          jk.ruang_id
+        FROM jadwal_kelas jk
+        JOIN kelas k ON jk.kelas_id = k.kelas_id
+        JOIN mata_pelajaran mp ON jk.mapel_id = mp.mapel_id
+        JOIN ruangan r ON jk.ruang_id = r.ruang_id
+        JOIN guru g ON jk.guru_id = g.guru_id
+        WHERE jk.guru_id = ? AND jk.hari = ?";  // Menggunakan prepared statement untuk menghindari SQL injection
 
-$total_sql = "SELECT COUNT(*) FROM jadwal_kelas";
-$total_result = $conn->query($total_sql);
-$total_row = $total_result ? $total_result->fetch_row()[0] : 0;
-
-$total_pages = ceil($total_row / $items_per_page);
+// Menyiapkan dan mengeksekusi query
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("is", $guru_id, $hariIni);  // 'i' untuk integer, 's' untuk string (hari)
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
+
   <header class="topbar">
     <div class="topbar-left">
       <img src="assets/img/logo-smk.png" alt="Logo SMK" class="logo-smk" />
@@ -104,10 +112,19 @@ $total_pages = ceil($total_row / $items_per_page);
           </p>
         </div>
 
-        <a href="#" class="logout">
-          <img src="assets/img/out-white.svg" alt="">
+        <a href="#" class="logout" id="logout-btn" onclick="showLogoutModal(event)">
+          <img src="assets/img/icon-logout-white.svg" alt="">
           <span class="text-keluar">Keluar</span>
         </a>
+
+        <!-- Logout Confirmation Modal -->
+        <div id="logout-modal" class="modal" style="display:none;">
+          <div class="modal-content">
+            <p>Apakah Anda yakin ingin keluar?</p>
+            <button id="confirm-logout" class="btn-logout" onclick="confirmLogout()">Ya, Keluar</button>
+            <button id="cancel-logout" class="btn-cancel" onclick="hideLogoutModal()">Batal</button>
+          </div>
+        </div>
       </aside>
 
       <div class="right-side">
@@ -120,7 +137,7 @@ $total_pages = ceil($total_row / $items_per_page);
           <div class="profile-box">
             <img src="assets/img/profile-avatar.svg" alt="Foto Profil" class="profile-img">
             <div class="profile-text">
-              <h1>Kadek Unggah Adi Nope</h1>
+              <h1><?php echo $_SESSION['nama']; ?></h1>
               <p>Guru Aktif</p>
             </div>
           </div>
@@ -134,6 +151,7 @@ $total_pages = ceil($total_row / $items_per_page);
             <th>JAM MULAI</th>
             <th>JAM SELESAI</th>
             <th>MATA PELAJARAN</th>
+            <th>KELAS</th>
             <th>RUANG</th>
           </tr>
         </thead>
@@ -145,6 +163,7 @@ $total_pages = ceil($total_row / $items_per_page);
                       <td>" . date('H:i', strtotime($row['jam_mulai'])) . "</td>
                       <td>" . date('H:i', strtotime($row['jam_selesai'])) . "</td>
                       <td>" . $row['nama_mapel'] . "</td>
+                      <td>" . $row['nama_kelas'] . "</td>
                       <td>" . $row['nama_ruang'] . "</td>
                     </tr>";
             }

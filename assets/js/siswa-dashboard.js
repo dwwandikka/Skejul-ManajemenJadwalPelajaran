@@ -46,3 +46,21 @@ document.addEventListener('click', function(e) {
     sidebar.classList.remove('open');
   }
 });
+
+function showLogoutModal(e) {
+  e.preventDefault();
+  document.getElementById('logout-modal').style.display = 'flex';
+}
+function hideLogoutModal() {
+  document.getElementById('logout-modal').style.display = 'none';
+}
+function confirmLogout() {
+  window.location.href = 'login.php';
+}
+
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const sidebar = document.querySelector('aside.sidebar');
+
+hamburgerBtn.addEventListener('click', () => {
+  sidebar.classList.toggle('active');
+});

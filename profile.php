@@ -136,9 +136,7 @@ switch($role) {
             <div class="mobile-header">
                 <div class="mobile-nav">
                     <div class="mobile-hamburger" id="mobileHamburger">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                        <img src="assets/img/List.svg" alt="">
                     </div>
                 </div>
             </div>
